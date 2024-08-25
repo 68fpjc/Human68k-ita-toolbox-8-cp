@@ -2,103 +2,103 @@
 *
 * Itagaki Fumihiko 05-Jul-92  Create.
 * 1.0
-* Itagaki Fumihiko 06-Nov-92  strip_excessive_slashes ‚ÌƒoƒOfix‚É”º‚¤‰ü”ÅD
-*                             fatchkƒoƒO‘ÎôD
-*                             ±×‚ÈƒƒbƒZ[ƒW•ÏXD
+* Itagaki Fumihiko 06-Nov-92  strip_excessive_slashes ã®ãƒã‚°fixã«ä¼´ã†æ”¹ç‰ˆï¼Ž
+*                             fatchkãƒã‚°å¯¾ç­–ï¼Ž
+*                             äº›ç´°ãªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¤‰æ›´ï¼Ž
 * 1.2
-* Itagaki Fumihiko 27-Dec-92  -I ƒIƒvƒVƒ‡ƒ“‚Æ -m ƒIƒvƒVƒ‡ƒ“‚Ì’Ç‰ÁD
-* Itagaki Fumihiko 28-Dec-92  ƒvƒƒeƒNƒg‚³‚ê‚½ƒƒfƒBƒA‚©‚ç cp -rp ‚ÅƒfƒBƒŒƒNƒgƒŠ‚ðƒRƒs[
-*                             ‚Å‚«‚È‚©‚Á‚½•s‹ï‡‚ðC³D
-* Itagaki Fumihiko 28-Dec-92  -x ‚ª³‚µ‚­“­‚¢‚Ä‚¢‚È‚©‚Á‚½ƒoƒO‚ðC³D
+* Itagaki Fumihiko 27-Dec-92  -I ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¨ -m ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¿½åŠ ï¼Ž
+* Itagaki Fumihiko 28-Dec-92  ãƒ—ãƒ­ãƒ†ã‚¯ãƒˆã•ã‚ŒãŸãƒ¡ãƒ‡ã‚£ã‚¢ã‹ã‚‰ cp -rp ã§ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ã‚³ãƒ”ãƒ¼
+*                             ã§ããªã‹ã£ãŸä¸å…·åˆã‚’ä¿®æ­£ï¼Ž
+* Itagaki Fumihiko 28-Dec-92  -x ãŒæ­£ã—ãåƒã„ã¦ã„ãªã‹ã£ãŸãƒã‚°ã‚’ä¿®æ­£ï¼Ž
 * 1.3
 * Itagaki Fumihiko 10-Jan-93  GETPDB -> lea $10(a0),a0
-* Itagaki Fumihiko 20-Jan-93  ˆø” - ‚Æ -- ‚Ìˆµ‚¢‚Ì•ÏX
-* Itagaki Fumihiko 22-Jan-93  ƒXƒ^ƒbƒN‚ðŠg’£
-* Itagaki Fumihiko 24-Jan-93  FATCHK ‚ÌƒGƒ‰[ EBADPARAM ‚ð–³Ž‹‚·‚é‚±‚Æ‚ð–Y‚ê‚Ä‚¢‚½‚Ì‚ðC³G
-*                             -x ‚ª³‚µ‚­“­‚©‚È‚¢‰Â”\«‚ª‚ ‚Á‚½D
+* Itagaki Fumihiko 20-Jan-93  å¼•æ•° - ã¨ -- ã®æ‰±ã„ã®å¤‰æ›´
+* Itagaki Fumihiko 22-Jan-93  ã‚¹ã‚¿ãƒƒã‚¯ã‚’æ‹¡å¼µ
+* Itagaki Fumihiko 24-Jan-93  FATCHK ã®ã‚¨ãƒ©ãƒ¼ EBADPARAM ã‚’ç„¡è¦–ã™ã‚‹ã“ã¨ã‚’å¿˜ã‚Œã¦ã„ãŸã®ã‚’ä¿®æ­£ï¼›
+*                             -x ãŒæ­£ã—ãåƒã‹ãªã„å¯èƒ½æ€§ãŒã‚ã£ãŸï¼Ž
 * 1.4
-* Itagaki Fumihiko 12-Feb-93  “ÁŽêƒfƒoƒCƒX‚É‘Î‰ž‚µCsource ‚Æ destination ‚Ì‚Ç‚¿‚ç‚©‚Å FATCHK
-*                             ‚ª EBADPARAM ˆÈŠO‚ÌƒGƒ‰[‚ð•Ô‚µ‚½ê‡‚É‚Í identical ‚Å‚Í‚È‚¢‚ÆŒ©
-*                             ‚È‚·‚æ‚¤‚É‚µ‚½D
-* Itagaki Fumihiko 13-Feb-93  -P foo bar ‚Å bar/foo ‚Å‚Í‚È‚­ bar/oo ‚ªì¬‚³‚ê‚Ä‚µ‚Ü‚¤ƒoƒO‚ðC
-*                             ³D
-* Itagaki Fumihiko 16-Feb-93  ƒfƒBƒŒƒNƒgƒŠ‚ðV‹KƒRƒs[‚·‚é‚Æ‚«CƒRƒs[Œ³‚ªu‘®«‚ðŽ‚½‚È‚¢ƒfƒB
-*                             ƒŒƒNƒgƒŠv‚Å‚ ‚éê‡‚É‚àƒRƒs[æ‚É‘Î‚µ‚Ä -m ƒIƒvƒVƒ‡ƒ“‚ªŒø‚­‚æ‚¤
-*                             C³D
-* Itagaki Fumihiko 16-Feb-93  -V ƒIƒvƒVƒ‡ƒ“‚Ì’Ç‰Á
-* Itagaki Fumihiko 16-Feb-93  ‚»‚Ì‘¼±×‚ÈC³‚ÆÅ“K‰»
+* Itagaki Fumihiko 12-Feb-93  ç‰¹æ®Šãƒ‡ãƒã‚¤ã‚¹ã«å¯¾å¿œã—ï¼Œsource ã¨ destination ã®ã©ã¡ã‚‰ã‹ã§ FATCHK
+*                             ãŒ EBADPARAM ä»¥å¤–ã®ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã—ãŸå ´åˆã«ã¯ identical ã§ã¯ãªã„ã¨è¦‹
+*                             ãªã™ã‚ˆã†ã«ã—ãŸï¼Ž
+* Itagaki Fumihiko 13-Feb-93  -P foo bar ã§ bar/foo ã§ã¯ãªã bar/oo ãŒä½œæˆã•ã‚Œã¦ã—ã¾ã†ãƒã‚°ã‚’ä¿®
+*                             æ­£ï¼Ž
+* Itagaki Fumihiko 16-Feb-93  ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æ–°è¦ã‚³ãƒ”ãƒ¼ã™ã‚‹ã¨ãï¼Œã‚³ãƒ”ãƒ¼å…ƒãŒã€Œå±žæ€§ã‚’æŒãŸãªã„ãƒ‡ã‚£
+*                             ãƒ¬ã‚¯ãƒˆãƒªã€ã§ã‚ã‚‹å ´åˆã«ã‚‚ã‚³ãƒ”ãƒ¼å…ˆã«å¯¾ã—ã¦ -m ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒåŠ¹ãã‚ˆã†
+*                             ä¿®æ­£ï¼Ž
+* Itagaki Fumihiko 16-Feb-93  -V ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¿½åŠ 
+* Itagaki Fumihiko 16-Feb-93  ãã®ä»–äº›ç´°ãªä¿®æ­£ã¨æœ€é©åŒ–
 * 1.5
-* Itagaki Fumihiko 18-Feb-93  source ‚ª symbolic link ‚Å‚ ‚é‚Æ exceptional abort ‚·‚éƒoƒO
-*                             iv1.5 ‚Å‚ÌƒGƒ“ƒoƒOj‚ðC³
-* Itagaki Fumihiko 20-Feb-93  Šm”FƒƒbƒZ[ƒW‚ðŽáŠ±Ú‚µ‚­‚µ‚½
-* Itagaki Fumihiko 20-Feb-93  ƒ{ƒŠƒ…[ƒ€Eƒ‰ƒxƒ‹‚ÌƒRƒs[æ‚ÌƒfƒBƒŒƒNƒgƒŠ“à‚Éƒ{ƒŠƒ…[ƒ€Eƒ‰ƒx
-*                             ƒ‹‚ª‘¶Ý‚µ‚Ä‚¢‚éê‡C-f ƒIƒvƒVƒ‡ƒ“‚ªŽw’è‚³‚ê‚Ä‚¢‚ê‚ÎC‚»‚ê‚ð
-*                             —\‚ß‹­§“I‚Éíœ‚µ‚Ä‚©‚çƒRƒs[‚µC‚»‚¤‚Å‚È‚¯‚ê‚ÎƒGƒ‰[‚Æ‚È‚é‚æ
-*                             ‚¤‚É‚µ‚½D
-* Itagaki Fumihiko 20-Feb-93  cp -r foo foo/bar ifoo/bar ‚ÍV‹Kj‚Ì‚æ‚¤‚ÈƒP[ƒX‚Å–³ŒÀÄ‹A‚µ
-*                             ‚È‚¢‚æ‚¤‚É‚µ‚½D‚½‚¾‚µ cp -r foo foo/bar/baz ‚Ì‚æ‚¤‚ÈƒP[ƒX‚Å
-*                             ‚ÍC‚â‚Í‚è–³ŒÀÄ‹A‚·‚éD
-* Itagaki Fumihiko 20-Feb-93  ‚»‚Ì‘¼±×‚¾‚ªd—v‚ÈC³
+* Itagaki Fumihiko 18-Feb-93  source ãŒ symbolic link ã§ã‚ã‚‹ã¨ exceptional abort ã™ã‚‹ãƒã‚°
+*                             ï¼ˆv1.5 ã§ã®ã‚¨ãƒ³ãƒã‚°ï¼‰ã‚’ä¿®æ­£
+* Itagaki Fumihiko 20-Feb-93  ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è‹¥å¹²è©³ã—ãã—ãŸ
+* Itagaki Fumihiko 20-Feb-93  ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™ãƒ«ã®ã‚³ãƒ”ãƒ¼å…ˆã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå†…ã«ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™
+*                             ãƒ«ãŒå­˜åœ¨ã—ã¦ã„ã‚‹å ´åˆï¼Œ-f ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚Œã°ï¼Œãã‚Œã‚’
+*                             äºˆã‚å¼·åˆ¶çš„ã«å‰Šé™¤ã—ã¦ã‹ã‚‰ã‚³ãƒ”ãƒ¼ã—ï¼Œãã†ã§ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹ã‚ˆ
+*                             ã†ã«ã—ãŸï¼Ž
+* Itagaki Fumihiko 20-Feb-93  cp -r foo foo/bar ï¼ˆfoo/bar ã¯æ–°è¦ï¼‰ã®ã‚ˆã†ãªã‚±ãƒ¼ã‚¹ã§ç„¡é™å†å¸°ã—
+*                             ãªã„ã‚ˆã†ã«ã—ãŸï¼ŽãŸã ã— cp -r foo foo/bar/baz ã®ã‚ˆã†ãªã‚±ãƒ¼ã‚¹ã§
+*                             ã¯ï¼Œã‚„ã¯ã‚Šç„¡é™å†å¸°ã™ã‚‹ï¼Ž
+* Itagaki Fumihiko 20-Feb-93  ãã®ä»–äº›ç´°ã ãŒé‡è¦ãªä¿®æ­£
 * 1.6
-* Itagaki Fumihiko 18-Feb-93  source ‚ª symbolic link ‚Å‚ ‚é‚ÆƒRƒs[‚Å‚«‚È‚¢‚±‚Æ‚ª‚ ‚éƒoƒO
-*                             iv1.5 ‚Å‚ÌƒGƒ“ƒoƒOj‚ðC³
+* Itagaki Fumihiko 18-Feb-93  source ãŒ symbolic link ã§ã‚ã‚‹ã¨ã‚³ãƒ”ãƒ¼ã§ããªã„ã“ã¨ãŒã‚ã‚‹ãƒã‚°
+*                             ï¼ˆv1.5 ã§ã®ã‚¨ãƒ³ãƒã‚°ï¼‰ã‚’ä¿®æ­£
 * 1.7
-* Itagaki Fumihiko 03-Nov-93  ‚‘¬‰»
-* Itagaki Fumihiko 03-Nov-93  -m-w+x i-m ‚Æ mode ‚ð‚­‚Á‚Â‚¯‚ÄŽw’èj‚ð‹–‚·
-* Itagaki Fumihiko 03-Nov-93  -m 644 i8i”’l•\Œ»j‚ð‹–‚·
-* Itagaki Fumihiko 03-Nov-93  -g ƒIƒvƒVƒ‡ƒ“‚Ì’Ç‰Á
-* 1.8(”ñŒöŠJ)
-* Itagaki Fumihiko 04-Nov-93  -g ƒIƒvƒVƒ‡ƒ“‚ð”pŽ~D‚»‚Ì‘ã‚í‚èCƒRƒs[Œ³ƒtƒ@ƒCƒ‹‚ÆƒRƒs[æƒtƒ@ƒC
-*                             ƒ‹‚ª“¯ˆê‚Å‚È‚¢‚±‚Æ‚ª—‹ü‚Ìã‚Å–¾Šm‚Å‚ ‚éê‡‚ÉŒÀ‚èƒ`ƒFƒbƒN‚µ‚È‚¢
-*                             ‚æ‚¤‚É‚µ‚½D
-* 1.9(”ñŒöŠJ)
-* Itagaki Fumihiko 11-Nov-93  ƒfƒBƒŒƒNƒgƒŠ‚ðƒRƒs[‚·‚é‚Æ‚«CƒfƒBƒŒƒNƒgƒŠ“à‚ÌƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“
-*                             ƒN‚ª³‚µ‚­ˆ—‚³‚ê‚È‚¢ƒoƒOiv1.9 ‚Å‚ÌƒGƒ“ƒoƒOj‚ðC³
-* Itagaki Fumihiko 13-Nov-93  -CDLSU ƒIƒvƒVƒ‡ƒ“‚Ì’Ç‰Á
-* 2.0(”ñŒöŠJ)
-* Itagaki Fumihiko 24-Nov-93  ƒ{ƒŠƒ…[ƒ€Eƒ‰ƒxƒ‹‚ðƒRƒs[‚·‚é‚ÆƒGƒ‰[‚É‚È‚éƒoƒOiv1.8 ‚Å‚ÌƒGƒ“ƒo
-*                             ƒOj‚ðC³
-* 2.1(”ñŒöŠJ)
-* Itagaki Fumihiko 26-Nov-93  -SƒIƒvƒVƒ‡ƒ“‚ðŽw’è‚·‚é‚ÆCƒVƒXƒeƒ€Eƒtƒ@ƒCƒ‹‚Éo‰ï‚¤“x‚Éƒtƒ@ƒC
-*                             ƒ‹Eƒnƒ“ƒhƒ‹‚ðÁ”ï‚µ‚Ä‚µ‚Ü‚¤ƒoƒO‚ðC³D
-* Itagaki Fumihiko 26-Nov-93  Ä‹AƒRƒs[æ‚ªƒfƒoƒCƒX‚Å‚ ‚é‚Æ‚«iƒGƒ‰[jCƒRƒs[æ‚Ìƒtƒ@ƒCƒ‹E
-*                             ƒnƒ“ƒhƒ‹‚ð 2“xclose‚µ‚Ä‚µ‚Ü‚¤ƒoƒOiŽÀŠQ‚Í‚È‚¢j‚ðC³D
-* Itagaki Fumihiko 27-Nov-93  -pƒIƒvƒVƒ‡ƒ“‚ðŽw’è‚µ‚Ä‚àƒfƒBƒŒƒNƒgƒŠ‚âƒ{ƒŠƒ…[ƒ€Eƒ‰ƒxƒ‹‚Ìƒ^ƒCƒ€
-*                             ƒXƒ^ƒ“ƒv‚ªƒRƒs[‚³‚ê‚È‚¢ƒoƒOiv1.8 ‚Å‚ÌƒGƒ“ƒoƒOj‚ðC³D
-* Itagaki Fumihiko 27-Nov-93  Å“K‰»‚Æ‚‘¬‰»D
-* 2.2(”ñŒöŠJ)
-* Itagaki Fumihiko 02-Dec-93  -CƒIƒvƒVƒ‡ƒ“‚©-DƒIƒvƒVƒ‡ƒ“‚ðŽw’è‚·‚é‚Æ ?: ‚â ?:/ ‚ªƒRƒs[‚³‚ê‚È‚¢
-*                             ƒoƒO‚ðC³D
-* 2.3(”ñŒöŠJ)
-* Itagaki Fumihiko 12-Dec-93  -CƒIƒvƒVƒ‡ƒ“‚ðŽw’è‚µ‚Ä‚¢‚Ä‚¢‚é‚Æ‚«C’²®‚Å‚«‚È‚¢–¼‘O‚Ìƒtƒ@ƒCƒ‹‚ª
-*                             ‚ ‚ê‚ÎƒGƒ‰[‚Æ‚È‚é‚æ‚¤‚É‚µ‚½D
-* Itagaki Fumihiko 28-Dec-93  -CƒIƒvƒVƒ‡ƒ“‚Í -BƒIƒvƒVƒ‡ƒ“‚É•ÏX‚µCV‚½‚É -CƒIƒvƒVƒ‡ƒ“‚ð’Ç‰Á
-* 2.4(”ñŒöŠJ)
-* Itagaki Fumihiko 20-Mar-94  •s—vƒR[ƒh‚ðíœ
-* Itagaki Fumihiko 01-Apr-94  cp -r B:/ C:. ‚Ì‚æ‚¤‚ÈƒP[ƒX‚Å, B:/foo ‚ÌƒRƒs[æ‚ª C:.//foo ‚Æ
-*                             ‚È‚é('/'‚ªd•¡‚·‚é)ƒoƒO‚ðC³.
-* Itagaki Fumihiko 03-Apr-94  mode‚Ì–³‚¢ƒtƒ@ƒCƒ‹(‚¨‚»‚ç‚­ƒfƒoƒCƒX)‚ð‚Í‚Ë‚é‚Ì‚ð‚â‚ß‚½.
-* 2.5(”ñŒöŠJ)
-* Itagaki Fumihiko 08-May-94  ƒfƒBƒŒƒNƒgƒŠ‚ÌÄ‹A‚Ì[‚³‚Ìƒ`ƒFƒbƒN‚Í, -x‚Ìƒ`ƒFƒbƒNŒã‚É‚·‚é.
-* Itagaki Fumihiko 08-May-94  -RƒIƒvƒVƒ‡ƒ“‚ÌˆÓ–¡‚ð•ÏX.
-* Itagaki Fumihiko 08-May-94  -nƒIƒvƒVƒ‡ƒ“‚ðŽw’è‚µ‚Ä‚à-iƒIƒvƒVƒ‡ƒ“‚È‚Ç‚ÌŠm”F‚Ís‚í‚ê‚é‚æ‚¤‚É‚µ
-*                             ‚½.
-* Itagaki Fumihiko 08-May-94  -Vn ‚Å‚àƒ^[ƒQƒbƒg‚Ìƒ{ƒŠƒ…[ƒ€ƒ‰ƒxƒ‹‚ªíœ‚³‚ê‚Ä‚µ‚Ü‚¤ƒoƒO‚ðC³.
-* Itagaki Fumihiko 08-May-94  -BƒIƒvƒVƒ‡ƒ“, -CƒIƒvƒVƒ‡ƒ“‚É‚æ‚éØ‚è‹l‚ß‚Ì•û–@‚ð•ÏX‚µ‚½.
+* Itagaki Fumihiko 03-Nov-93  é«˜é€ŸåŒ–
+* Itagaki Fumihiko 03-Nov-93  -m-w+x ï¼ˆ-m ã¨ mode ã‚’ãã£ã¤ã‘ã¦æŒ‡å®šï¼‰ã‚’è¨±ã™
+* Itagaki Fumihiko 03-Nov-93  -m 644 ï¼ˆ8é€²æ•°å€¤è¡¨ç¾ï¼‰ã‚’è¨±ã™
+* Itagaki Fumihiko 03-Nov-93  -g ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¿½åŠ 
+* 1.8(éžå…¬é–‹)
+* Itagaki Fumihiko 04-Nov-93  -g ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å»ƒæ­¢ï¼Žãã®ä»£ã‚ã‚Šï¼Œã‚³ãƒ”ãƒ¼å…ƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã‚³ãƒ”ãƒ¼å…ˆãƒ•ã‚¡ã‚¤
+*                             ãƒ«ãŒåŒä¸€ã§ãªã„ã“ã¨ãŒç†å±ˆã®ä¸Šã§æ˜Žç¢ºã§ã‚ã‚‹å ´åˆã«é™ã‚Šãƒã‚§ãƒƒã‚¯ã—ãªã„
+*                             ã‚ˆã†ã«ã—ãŸï¼Ž
+* 1.9(éžå…¬é–‹)
+* Itagaki Fumihiko 11-Nov-93  ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹ã¨ãï¼Œãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå†…ã®ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³
+*                             ã‚¯ãŒæ­£ã—ãå‡¦ç†ã•ã‚Œãªã„ãƒã‚°ï¼ˆv1.9 ã§ã®ã‚¨ãƒ³ãƒã‚°ï¼‰ã‚’ä¿®æ­£
+* Itagaki Fumihiko 13-Nov-93  -CDLSU ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¿½åŠ 
+* 2.0(éžå…¬é–‹)
+* Itagaki Fumihiko 24-Nov-93  ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™ãƒ«ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹ã¨ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ãƒã‚°ï¼ˆv1.8 ã§ã®ã‚¨ãƒ³ãƒ
+*                             ã‚°ï¼‰ã‚’ä¿®æ­£
+* 2.1(éžå…¬é–‹)
+* Itagaki Fumihiko 26-Nov-93  -Sã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã™ã‚‹ã¨ï¼Œã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã«å‡ºä¼šã†åº¦ã«ãƒ•ã‚¡ã‚¤
+*                             ãƒ«ãƒ»ãƒãƒ³ãƒ‰ãƒ«ã‚’æ¶ˆè²»ã—ã¦ã—ã¾ã†ãƒã‚°ã‚’ä¿®æ­£ï¼Ž
+* Itagaki Fumihiko 26-Nov-93  å†å¸°ã‚³ãƒ”ãƒ¼å…ˆãŒãƒ‡ãƒã‚¤ã‚¹ã§ã‚ã‚‹ã¨ãï¼ˆã‚¨ãƒ©ãƒ¼ï¼‰ï¼Œã‚³ãƒ”ãƒ¼å…ˆã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»
+*                             ãƒãƒ³ãƒ‰ãƒ«ã‚’ 2åº¦closeã—ã¦ã—ã¾ã†ãƒã‚°ï¼ˆå®Ÿå®³ã¯ãªã„ï¼‰ã‚’ä¿®æ­£ï¼Ž
+* Itagaki Fumihiko 27-Nov-93  -pã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã—ã¦ã‚‚ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚„ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™ãƒ«ã®ã‚¿ã‚¤ãƒ 
+*                             ã‚¹ã‚¿ãƒ³ãƒ—ãŒã‚³ãƒ”ãƒ¼ã•ã‚Œãªã„ãƒã‚°ï¼ˆv1.8 ã§ã®ã‚¨ãƒ³ãƒã‚°ï¼‰ã‚’ä¿®æ­£ï¼Ž
+* Itagaki Fumihiko 27-Nov-93  æœ€é©åŒ–ã¨é«˜é€ŸåŒ–ï¼Ž
+* 2.2(éžå…¬é–‹)
+* Itagaki Fumihiko 02-Dec-93  -Cã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‹-Dã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã™ã‚‹ã¨ ?: ã‚„ ?:/ ãŒã‚³ãƒ”ãƒ¼ã•ã‚Œãªã„
+*                             ãƒã‚°ã‚’ä¿®æ­£ï¼Ž
+* 2.3(éžå…¬é–‹)
+* Itagaki Fumihiko 12-Dec-93  -Cã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã—ã¦ã„ã¦ã„ã‚‹ã¨ãï¼Œèª¿æ•´ã§ããªã„åå‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒ
+*                             ã‚ã‚Œã°ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹ã‚ˆã†ã«ã—ãŸï¼Ž
+* Itagaki Fumihiko 28-Dec-93  -Cã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¯ -Bã‚ªãƒ—ã‚·ãƒ§ãƒ³ã«å¤‰æ›´ã—ï¼Œæ–°ãŸã« -Cã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ 
+* 2.4(éžå…¬é–‹)
+* Itagaki Fumihiko 20-Mar-94  ä¸è¦ã‚³ãƒ¼ãƒ‰ã‚’å‰Šé™¤
+* Itagaki Fumihiko 01-Apr-94  cp -r B:/ C:. ã®ã‚ˆã†ãªã‚±ãƒ¼ã‚¹ã§, B:/foo ã®ã‚³ãƒ”ãƒ¼å…ˆãŒ C:.//foo ã¨
+*                             ãªã‚‹('/'ãŒé‡è¤‡ã™ã‚‹)ãƒã‚°ã‚’ä¿®æ­£.
+* Itagaki Fumihiko 03-Apr-94  modeã®ç„¡ã„ãƒ•ã‚¡ã‚¤ãƒ«(ãŠãã‚‰ããƒ‡ãƒã‚¤ã‚¹)ã‚’ã¯ã­ã‚‹ã®ã‚’ã‚„ã‚ãŸ.
+* 2.5(éžå…¬é–‹)
+* Itagaki Fumihiko 08-May-94  ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å†å¸°ã®æ·±ã•ã®ãƒã‚§ãƒƒã‚¯ã¯, -xã®ãƒã‚§ãƒƒã‚¯å¾Œã«ã™ã‚‹.
+* Itagaki Fumihiko 08-May-94  -Rã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®æ„å‘³ã‚’å¤‰æ›´.
+* Itagaki Fumihiko 08-May-94  -nã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã—ã¦ã‚‚-iã‚ªãƒ—ã‚·ãƒ§ãƒ³ãªã©ã®ç¢ºèªã¯è¡Œã‚ã‚Œã‚‹ã‚ˆã†ã«ã—
+*                             ãŸ.
+* Itagaki Fumihiko 08-May-94  -Vn ã§ã‚‚ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ©ãƒ™ãƒ«ãŒå‰Šé™¤ã•ã‚Œã¦ã—ã¾ã†ãƒã‚°ã‚’ä¿®æ­£.
+* Itagaki Fumihiko 08-May-94  -Bã‚ªãƒ—ã‚·ãƒ§ãƒ³, -Cã‚ªãƒ—ã‚·ãƒ§ãƒ³ã«ã‚ˆã‚‹åˆ‡ã‚Šè©°ã‚ã®æ–¹æ³•ã‚’å¤‰æ›´ã—ãŸ.
 * 2.6
-* Itagaki Fumihiko 01-Oct-94  ƒI[ƒvƒ“‚µ‚Ä‚¢‚È‚¢ƒtƒ@ƒCƒ‹‚ðƒNƒ[ƒY‚·‚éê‡‚ª‚ ‚éƒoƒOiŽÀŠQ‚Í‚Ù
-*                             ‚Æ‚ñ‚Ç”­¶‚µ‚È‚¢j‚ðC³.
-* Itagaki Fumihiko 02-Oct-94  2044”NˆÈ~‚Ìƒtƒ@ƒCƒ‹‚ð-uƒIƒvƒVƒ‡ƒ“‚Â‚«‚ÅƒRƒs[‚Ü‚½‚Í-pƒIƒvƒVƒ‡ƒ“
-*                             ‚Â‚«‚Åã‘‚«ƒRƒs[‚Å‚«‚È‚¢ƒoƒO‚ðC³.
-* Itagaki Fumihiko 02-Oct-94  -T ƒIƒvƒVƒ‡ƒ“‚ð’Ç‰Á.
-* 2.7(”ñŒöŠJ)
-* Itagaki Fumihiko 08-Oct-94  -h ƒIƒvƒVƒ‡ƒ“‚ð’Ç‰Á.
-* Itagaki Fumihiko 08-Oct-94  -T ƒIƒvƒVƒ‡ƒ“‚ªŒø‚­ðŒ‚ð•ÏX.
+* Itagaki Fumihiko 01-Oct-94  ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã„ãªã„ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¯ãƒ­ãƒ¼ã‚ºã™ã‚‹å ´åˆãŒã‚ã‚‹ãƒã‚°ï¼ˆå®Ÿå®³ã¯ã»
+*                             ã¨ã‚“ã©ç™ºç”Ÿã—ãªã„ï¼‰ã‚’ä¿®æ­£.
+* Itagaki Fumihiko 02-Oct-94  2044å¹´ä»¥é™ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’-uã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¤ãã§ã‚³ãƒ”ãƒ¼ã¾ãŸã¯-pã‚ªãƒ—ã‚·ãƒ§ãƒ³
+*                             ã¤ãã§ä¸Šæ›¸ãã‚³ãƒ”ãƒ¼ã§ããªã„ãƒã‚°ã‚’ä¿®æ­£.
+* Itagaki Fumihiko 02-Oct-94  -T ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ .
+* 2.7(éžå…¬é–‹)
+* Itagaki Fumihiko 08-Oct-94  -h ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ .
+* Itagaki Fumihiko 08-Oct-94  -T ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒåŠ¹ãæ¡ä»¶ã‚’å¤‰æ›´.
 * 2.8
 *
-* Usage: cp [ -IRSTVadfhinpsuv ] [ -m mode ] [ -- ] <ƒtƒ@ƒCƒ‹1> <ƒtƒ@ƒCƒ‹2>
-*        cp -Rr [ -BCDILUSTVadefinpsuv ] [ -m mode ] [ -- ] <ƒfƒBƒŒƒNƒgƒŠ1> <ƒfƒBƒŒƒNƒgƒŠ2>
-*        cp [ -BCDILPRSTUVadefhinprsuv ] [ -m mode ] [ -- ] <ƒtƒ@ƒCƒ‹> ... <ƒfƒBƒŒƒNƒgƒŠ>
+* Usage: cp [ -IRSTVadfhinpsuv ] [ -m mode ] [ -- ] <ãƒ•ã‚¡ã‚¤ãƒ«1> <ãƒ•ã‚¡ã‚¤ãƒ«2>
+*        cp -Rr [ -BCDILUSTVadefinpsuv ] [ -m mode ] [ -- ] <ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª1> <ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª2>
+*        cp [ -BCDILPRSTUVadefhinprsuv ] [ -m mode ] [ -- ] <ãƒ•ã‚¡ã‚¤ãƒ«> ... <ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª>
 
 .include doscall.h
 .include error.h
@@ -125,13 +125,13 @@
 .xref find_slashes
 .xref strip_excessive_slashes
 
-REQUIRED_OSVER	equ	$200			*  2.00ˆÈ~
+REQUIRED_OSVER	equ	$200			*  2.00ä»¥é™
 
-MAXRECURSE	equ	64	*  ƒTƒuƒfƒBƒŒƒNƒgƒŠ‚ðíœ‚·‚é‚½‚ß‚ÉÄ‹A‚·‚é‰ñ”‚ÌãŒÀD
-				*  MAXDIR iƒpƒX–¼‚ÌƒfƒBƒŒƒNƒgƒŠ•” "/1/2/3/../" ‚Ì’·‚³j
-				*  ‚ª 64 ‚Å‚ ‚é‚©‚çA31‚Å[•ª‚Å‚ ‚é‚ªC
-				*  ƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN‚ðl—¶‚µ‚Ä 64 ‚Æ‚·‚éD
-				*  ƒXƒ^ƒbƒN—Ê‚É‚©‚©‚í‚éD
+MAXRECURSE	equ	64	*  ã‚µãƒ–ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å‰Šé™¤ã™ã‚‹ãŸã‚ã«å†å¸°ã™ã‚‹å›žæ•°ã®ä¸Šé™ï¼Ž
+				*  MAXDIR ï¼ˆãƒ‘ã‚¹åã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªéƒ¨ "/1/2/3/../" ã®é•·ã•ï¼‰
+				*  ãŒ 64 ã§ã‚ã‚‹ã‹ã‚‰ã€31ã§å……åˆ†ã§ã‚ã‚‹ãŒï¼Œ
+				*  ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯ã‚’è€ƒæ…®ã—ã¦ 64 ã¨ã™ã‚‹ï¼Ž
+				*  ã‚¹ã‚¿ãƒƒã‚¯é‡ã«ã‹ã‹ã‚ã‚‹ï¼Ž
 
 GETSLEN		equ	32
 
@@ -181,12 +181,12 @@ start:
 		bra.s	start1
 		dc.b	'#HUPAIR',0
 start1:
-		lea	stack_bottom,a7			*  A7 := ƒXƒ^ƒbƒN‚Ì’ê
+		lea	stack_bottom,a7			*  A7 := ã‚¹ã‚¿ãƒƒã‚¯ã®åº•
 		DOS	_VERNUM
 		cmp.w	#REQUIRED_OSVER,d0
 		bcs	dos_version_mismatch
 
-		lea	$10(a0),a0			*  A0 : PDBƒAƒhƒŒƒX
+		lea	$10(a0),a0			*  A0 : PDBã‚¢ãƒ‰ãƒ¬ã‚¹
 		move.l	a7,d0
 		sub.l	a0,d0
 		move.l	d0,-(a7)
@@ -194,17 +194,17 @@ start1:
 		DOS	_SETBLOCK
 		addq.l	#8,a7
 	*
-	*  ˆø”•À‚ÑŠi”[ƒGƒŠƒA‚ðŠm•Û‚·‚é
+	*  å¼•æ•°ä¸¦ã³æ ¼ç´ã‚¨ãƒªã‚¢ã‚’ç¢ºä¿ã™ã‚‹
 	*
-		lea	1(a2),a0			*  A0 := ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Ì•¶Žš—ñ‚Ìæ“ªƒAƒhƒŒƒX
-		bsr	strlen				*  D0.L := ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Ì•¶Žš—ñ‚Ì’·‚³
+		lea	1(a2),a0			*  A0 := ã‚³ãƒžãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã®æ–‡å­—åˆ—ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+		bsr	strlen				*  D0.L := ã‚³ãƒžãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã®æ–‡å­—åˆ—ã®é•·ã•
 		addq.l	#1,d0
 		bsr	malloc
 		bmi	insufficient_memory
 
-		movea.l	d0,a1				*  A1 := ˆø”•À‚ÑŠi”[ƒGƒŠƒA‚Ìæ“ªƒAƒhƒŒƒX
+		movea.l	d0,a1				*  A1 := å¼•æ•°ä¸¦ã³æ ¼ç´ã‚¨ãƒªã‚¢ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
 	*
-	*  ƒoƒbƒtƒ@‚ðŠm•Û‚·‚é
+	*  ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 	*
 		move.l	#$00ffffff,d0
 		bsr	malloc
@@ -212,30 +212,30 @@ start1:
 		cmp.l	#1024,d0
 		blo	no_buffer
 
-		move.l	d0,d4				*  D4.L : ƒoƒbƒtƒ@ƒTƒCƒY
+		move.l	d0,d4				*  D4.L : ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 		bsr	malloc
 		bmi	no_buffer
 
-		movea.l	d0,a4				*  A4 : ƒoƒbƒtƒ@
+		movea.l	d0,a4				*  A4 : ãƒãƒƒãƒ•ã‚¡
 		bra	buffer_ok
 
 no_buffer:
 		moveq	#0,d4
 buffer_ok:
 	*
-	*  lndrv ‚ª‘g‚Ýž‚Ü‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ðŒŸ¸‚·‚é
+	*  lndrv ãŒçµ„ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’æ¤œæŸ»ã™ã‚‹
 	*
 		bsr	getlnenv
 		move.l	d0,lndrv
 	*
-	*  ˆø”‚ðƒfƒR[ƒh‚µC‰ðŽß‚·‚é
+	*  å¼•æ•°ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã—ï¼Œè§£é‡ˆã™ã‚‹
 	*
-		bsr	DecodeHUPAIR			*  ˆø”‚ðƒfƒR[ƒh‚·‚é
-		movea.l	a1,a0				*  A0 : ˆø”ƒ|ƒCƒ“ƒ^
-		move.l	d0,d7				*  D7.L : ˆø”ƒJƒEƒ“ƒ^
+		bsr	DecodeHUPAIR			*  å¼•æ•°ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã™ã‚‹
+		movea.l	a1,a0				*  A0 : å¼•æ•°ãƒã‚¤ãƒ³ã‚¿
+		move.l	d0,d7				*  D7.L : å¼•æ•°ã‚«ã‚¦ãƒ³ã‚¿
 		move.b	#$ff,mode_mask
 		clr.b	mode_plus
-		moveq	#0,d5				*  D5.L : ƒtƒ‰ƒO
+		moveq	#0,d5				*  D5.L : ãƒ•ãƒ©ã‚°
 decode_opt_loop1:
 		tst.l	d7
 		beq	decode_opt_done
@@ -533,9 +533,9 @@ decode_opt_done:
 		subq.l	#2,d7
 		bcs	too_few_args
 	*
-	*  target‚ð’²‚×‚é
+	*  targetã‚’èª¿ã¹ã‚‹
 	*
-		moveq	#0,d6				*  D6.W : ƒGƒ‰[EƒR[ƒh
+		moveq	#0,d6				*  D6.W : ã‚¨ãƒ©ãƒ¼ãƒ»ã‚³ãƒ¼ãƒ‰
 		movea.l	a0,a1				*  A1 : 1st source
 		move.l	d7,d0
 find_target:
@@ -545,10 +545,10 @@ find_target:
 							*  A0 : target
 		bsr	strip_excessive_slashes
 
-		*  target‚ªƒfƒBƒŒƒNƒgƒŠ‚Å‚ ‚é‚©‚Ç‚¤‚©‚ð’²‚×‚é
+		*  targetãŒãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		*
-		*  ‚±‚±‚Å‚ÍAƒfƒBƒŒƒNƒgƒŠ‚Ö‚ÌƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN‚àŒ»ŽÀ‚Ì
-		*  ƒfƒBƒŒƒNƒgƒŠ‚Æ“¯“™‚Éˆµ‚¤B-d ƒIƒvƒVƒ‡ƒ“‚Í‰e‹¿‚µ‚È‚¢B
+		*  ã“ã“ã§ã¯ã€ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¸ã®ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯ã‚‚ç¾å®Ÿã®
+		*  ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¨åŒç­‰ã«æ‰±ã†ã€‚-d ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¯å½±éŸ¿ã—ãªã„ã€‚
 
 		bsr	is_directory
 		bmi	exit_program
@@ -624,13 +624,13 @@ cp_error_exit_3:
 *****************************************************************
 * copy_into_dir_0, copy_into_dir_1
 *
-*      A0 ‚ÅŽ¦‚³‚ê‚éƒGƒ“ƒgƒŠ‚ð A1 ‚ÅŽ¦‚³‚ê‚éƒfƒBƒŒƒNƒgƒŠ‰º‚ÉƒRƒs[‚·‚é
+*      A0 ã§ç¤ºã•ã‚Œã‚‹ã‚¨ãƒ³ãƒˆãƒªã‚’ A1 ã§ç¤ºã•ã‚Œã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä¸‹ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 *
 * CALL
-*      D0.L   Ä‹AƒŒƒxƒ‹
+*      D0.L   å†å¸°ãƒ¬ãƒ™ãƒ«
 *
 * RETURN
-*      A5     ”j‰ó
+*      A5     ç ´å£Š
 *****************************************************************
 destination = -((((MAXPATH+1)+1)>>1)<<1)
 copy_into_dir_autosize = -destination
@@ -642,7 +642,7 @@ copy_into_dir_0:
 copy_into_dir_1:
 		link	a6,#destination
 		movem.l	d0-d3/d5/d7/a0-a3,-(a7)
-		move.l	d0,d7				*  D7.L : Ä‹AƒŒƒxƒ‹
+		move.l	d0,d7				*  D7.L : å†å¸°ãƒ¬ãƒ™ãƒ«
 		move.l	a0,copy_into_dir_sourceP
 		btst	#FLAG_path,d5
 		bne	copy_into_dir_skip_root
@@ -658,7 +658,7 @@ copy_into_dir_skip_root:
 copy_into_dir_2:
 		movea.l	a0,a2
 		*
-		*  ‚±‚±‚ÅC
+		*  ã“ã“ã§ï¼Œ
 		*       source:       A:/s1/s2/s3
 		*                        |     |
 		*                        A0    A0
@@ -669,8 +669,8 @@ copy_into_dir_2:
 		*                     |
 		*                     A1
 	*
-	*  -L ƒIƒvƒVƒ‡ƒ“‚ªŽw’è‚³‚ê‚Ä‚¢‚é‚Æ‚«CA0ˆÈ~‚É¬•¶Žš‚ªŠÜ‚Ü‚ê‚Ä‚¢‚È‚¢‚©‚Ç‚¤‚©
-	*  ƒ`ƒFƒbƒN‚·‚é
+	*  -L ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã¨ãï¼ŒA0ä»¥é™ã«å°æ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ãªã„ã‹ã©ã†ã‹
+	*  ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	*
 		btst	#FLAG_L,d5
 		beq	check_name_case_ok
@@ -688,12 +688,12 @@ check_name_case:
 		bne	check_name_case
 check_name_case_ok:
 	*
-	*  destination name ‚ðì‚é
+	*  destination name ã‚’ä½œã‚‹
 	*
 		lea	destination(a6),a0
 		move.l	#MAXPATH,d2
 		*
-		*  ‚±‚±‚ÅC
+		*  ã“ã“ã§ï¼Œ
 		*       source:       A:/s1/s2/s3
 		*                        |     |
 		*                        A2    A2
@@ -708,7 +708,7 @@ check_name_case_ok:
 		*                     A0
 
 		*
-		*  targetdir ‚ð destination ‚ÉƒRƒs[‚·‚é
+		*  targetdir ã‚’ destination ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		*
 		exg	a0,a1
 		bsr	strlen
@@ -732,7 +732,7 @@ check_name_case_ok:
 copy_into_dir_makedestname_1:
 		move.l	a0,copy_into_dir_destP
 		*
-		*  ‚±‚±‚ÅC
+		*  ã“ã“ã§ï¼Œ
 		*       source:       A:/s1/s2/s3
 		*                        |     |
 		*                        A2    A2
@@ -755,7 +755,7 @@ copy_into_dir_makedestname_1:
 		bne	copy_into_dir_makedestname_3
 copy_into_dir_makedestname_2:
 		*
-		*  A2ˆÈ~‚ð destination ‚É’Ç‰Á‚·‚é
+		*  A2ä»¥é™ã‚’ destination ã«è¿½åŠ ã™ã‚‹
 		*
 		exg	a0,a2
 		bsr	strlen
@@ -770,7 +770,7 @@ copy_into_dir_makedestname_2:
 copy_into_dir_makedestname_3:
 		movea.l	a0,a3
 		*
-		*  ‚±‚±‚ÅC
+		*  ã“ã“ã§ï¼Œ
 		*       source:       A:/s1/s2/s3
 		*                        |     |
 		*                        A2    A2
@@ -983,7 +983,7 @@ makedestname_next:
 		clr.b	(a3)
 destname_ok:
 		*
-		*  -U ‚ªŽw’è‚³‚ê‚Ä‚¢‚ê‚Î‘å•¶Žš‚É•ÏŠ·‚·‚é
+		*  -U ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚Œã°å¤§æ–‡å­—ã«å¤‰æ›ã™ã‚‹
 		*
 		btst	#FLAG_U,d5
 		beq	copy_into_dir_destname_ok
@@ -1006,7 +1006,7 @@ copy_into_dir_toupper_sjis:
 		bne	copy_into_dir_toupper
 copy_into_dir_destname_ok:
 	*
-	*  source‚ðƒ`ƒFƒbƒN‚·‚é
+	*  sourceã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	*
 		movea.l	copy_into_dir_sourceP,a0
 		move.l	source_mode,d0
@@ -1025,8 +1025,8 @@ copy_into_dir_source_ok:
 		bra	copy_into_dir_ok
 
 copy_into_dir_check_source:
-		move.l	#-1,source_time			*  source‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚Í–Y‚ê‚é
-		bsr	open_source			*  source‚ðopen‚µ‚Ä‚Ý‚é
+		move.l	#-1,source_time			*  sourceã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã¯å¿˜ã‚Œã‚‹
+		bsr	open_source			*  sourceã‚’openã—ã¦ã¿ã‚‹
 		cmp.l	#-1,d0
 		beq	copy_into_dir_done
 
@@ -1036,7 +1036,7 @@ copy_into_dir_check_source:
 		tst.l	source_mode
 		bpl	copy_into_dir_ok
 
-		*  source‚Í‘¶Ý‚µ‚È‚¢D-P ‚Å‚ÍƒGƒ‰[D
+		*  sourceã¯å­˜åœ¨ã—ãªã„ï¼Ž-P ã§ã¯ã‚¨ãƒ©ãƒ¼ï¼Ž
 		btst	#FLAG_path,d5
 		bne	copy_into_dir_perror
 copy_into_dir_ok:
@@ -1143,8 +1143,8 @@ makedestname_sub_done:
 *****************************************************************
 * copy_file_or_directory_0, copy_file_or_directory_1
 *
-*      A0 ‚ÅŽ¦‚³‚ê‚éƒtƒ@ƒCƒ‹‚Ü‚½‚ÍƒfƒBƒŒƒNƒgƒŠ‚ð
-*      A1 ‚ÅŽ¦‚³‚ê‚éƒtƒ@ƒCƒ‹‚Ü‚½‚ÍƒfƒBƒŒƒNƒgƒŠ‚Æ‚µ‚ÄƒRƒs[‚·‚é
+*      A0 ã§ç¤ºã•ã‚Œã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¾ãŸã¯ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’
+*      A1 ã§ç¤ºã•ã‚Œã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¾ãŸã¯ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¨ã—ã¦ã‚³ãƒ”ãƒ¼ã™ã‚‹
 *
 * CALL
 *      A0     source pathname
@@ -1152,15 +1152,15 @@ makedestname_sub_done:
 *
 *      copy_file_or_directory_1
 *
-*      Šù‚É open_source ‚ªs‚í‚ê‚ÄCsource_pathnameCsource_modeC
-*      source_time ‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚à‚Ì‚Æ‚·‚éD
+*      æ—¢ã« open_source ãŒè¡Œã‚ã‚Œã¦ï¼Œsource_pathnameï¼Œsource_modeï¼Œ
+*      source_time ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã¨ã™ã‚‹ï¼Ž
 *
-*      D1.L   source‚Ìƒtƒ@ƒCƒ‹Eƒnƒ“ƒhƒ‹i-1 : ‰Ropenj
-*      D7.L   Ä‹A‚Ì[‚³
+*      D1.L   sourceã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ãƒãƒ³ãƒ‰ãƒ«ï¼ˆ-1 : å˜˜openï¼‰
+*      D7.L   å†å¸°ã®æ·±ã•
 *
 * RETURN
-*      D0-D3/D7/A0-A3/A5  ”j‰ó
-*      D5.L ‚Ì FLAG_path bit ‚ÍƒNƒŠƒA‚³‚ê‚é‚±‚Æ‚ª‚ ‚é
+*      D0-D3/D7/A0-A3/A5  ç ´å£Š
+*      D5.L ã® FLAG_path bit ã¯ã‚¯ãƒªã‚¢ã•ã‚Œã‚‹ã“ã¨ãŒã‚ã‚‹
 *****************************************************************
 copy_directory_depth = -4
 copy_directory_tableptr = copy_directory_depth-4
@@ -1177,7 +1177,7 @@ copy_file_or_directory_0:
 		move.l	#-1,drive
 		moveq	#0,d7
 		*
-		*  source‚ðopen‚µ‚Ä‚Ý‚é
+		*  sourceã‚’openã—ã¦ã¿ã‚‹
 		*
 		move.l	#-1,source_mode
 		move.l	#-1,source_time
@@ -1186,10 +1186,10 @@ copy_file_or_directory_0:
 		cmp.l	#-1,d0
 		beq	copy_file_or_directory_return
 
-		move.l	d0,d1				*  D1.L : source ‚Ìƒtƒ@ƒCƒ‹Eƒnƒ“ƒhƒ‹
+		move.l	d0,d1				*  D1.L : source ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ãƒãƒ³ãƒ‰ãƒ«
 copy_file_or_directory_1:
 		*
-		*  -S ‚Ìƒ`ƒFƒbƒN
+		*  -S ã®ãƒã‚§ãƒƒã‚¯
 		*
 		btst	#FLAG_S,d5
 		beq	copy_file_or_directory_S_ok
@@ -1207,13 +1207,13 @@ copy_file_or_directory_S_ok:
 		cmp.l	#-1,d1
 		bne	copy_file_or_directory_3
 
-		*  source‚Íƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€ã‚ÌƒGƒ“ƒgƒŠ‚Å‚ ‚èC
-		*  source_mode ‚àŠm’è‚µ‚Ä‚¢‚é‚ªC‚Ü‚¾open‚µ‚Ä‚¢‚È‚¢D
+		*  sourceã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ä¸Šã®ã‚¨ãƒ³ãƒˆãƒªã§ã‚ã‚Šï¼Œ
+		*  source_mode ã‚‚ç¢ºå®šã—ã¦ã„ã‚‹ãŒï¼Œã¾ã openã—ã¦ã„ãªã„ï¼Ž
 		move.l	source_mode,d0
-		btst	#MODEBIT_DIR,d0			*  ƒfƒBƒŒƒNƒgƒŠ‚©H
+		btst	#MODEBIT_DIR,d0			*  ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ï¼Ÿ
 		bne	copy_file_or_directory_dir
 
-		btst	#MODEBIT_VOL,d0			*  ƒ{ƒŠƒ…[ƒ€ƒ‰ƒxƒ‹‚©H
+		btst	#MODEBIT_VOL,d0			*  ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ©ãƒ™ãƒ«ã‹ï¼Ÿ
 		beq	copy_file
 
 		moveq	#EDIRVOL,d1
@@ -1225,34 +1225,34 @@ copy_file_or_directory_dir:
 		lea	copy_directory_pathbuf(a6),a2
 		bsr	make_dirsearchpath
 copy_directory_0:
-		bmi	copy_directory_done		*  cat_pathname ƒGƒ‰[
+		bmi	copy_directory_done		*  cat_pathname ã‚¨ãƒ©ãƒ¼
 		bra	copy_directory
 
 copy_file_or_directory_3:
 		tst.l	d1
 		bpl	copy_file
 
-		*  source‚Íopen‚Å‚«‚È‚©‚Á‚½
-		*  ƒfƒBƒŒƒNƒgƒŠ‚©Cƒ{ƒŠƒ…[ƒ€ƒ‰ƒxƒ‹‚©CopenƒGƒ‰[
+		*  sourceã¯openã§ããªã‹ã£ãŸ
+		*  ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ï¼Œãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ©ãƒ™ãƒ«ã‹ï¼Œopenã‚¨ãƒ©ãƒ¼
 		link	a6,#copy_directory_auto_pad
 		movem.l	d4/a4,-(a7)
 		lea	copy_directory_pathbuf(a6),a2
-		bsr	is_directory_2			*  ƒfƒBƒŒƒNƒgƒŠ‚©H
+		bsr	is_directory_2			*  ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ï¼Ÿ
 		bne	copy_directory_0
 
 		movem.l	(a7)+,d4/a4
 		unlk	a6
 		move.l	d1,d0
-		cmp.l	#EDIRVOL,d0			*  ƒ{ƒŠƒ…[ƒ€ƒ‰ƒxƒ‹‚©H
+		cmp.l	#EDIRVOL,d0			*  ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ©ãƒ™ãƒ«ã‹ï¼Ÿ
 		bne	perror
 ****************
 *
-*  ƒ{ƒŠƒ…[ƒ€Eƒ‰ƒxƒ‹‚ðƒRƒs[‚·‚é
+*  ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™ãƒ«ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 *
 copy_volumelabel:
 	*
-	*     -V ‚ªŽw’è‚³‚ê‚Ä‚¢‚ê‚ÎƒRƒs[‚·‚éD
-	*     ‚³‚à‚È‚­‚ÎƒGƒ‰[D
+	*     -V ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚Œã°ã‚³ãƒ”ãƒ¼ã™ã‚‹ï¼Ž
+	*     ã•ã‚‚ãªãã°ã‚¨ãƒ©ãƒ¼ï¼Ž
 	*
 		btst	#FLAG_V,d5
 		bne	copy_file
@@ -1261,12 +1261,12 @@ copy_volumelabel:
 		bra	werror_myname_word_colon_msg
 ****************
 *
-*  ƒtƒ@ƒCƒ‹‚ðƒRƒs[‚·‚é
+*  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 *
 copy_file:
 		clr.b	source_fatchk_done
 	*
-	*  -x ‚Ìƒ`ƒFƒbƒN
+	*  -x ã®ãƒã‚§ãƒƒã‚¯
 	*
 		btst	#FLAG_x,d5
 		beq	copy_file_x_ok
@@ -1282,7 +1282,7 @@ copy_file:
 		bne	copy_file_return_1
 copy_file_x_ok:
 	*
-	*  -s ‚Ìƒ`ƒFƒbƒN
+	*  -s ã®ãƒã‚§ãƒƒã‚¯
 	*
 		btst	#FLAG_s,d5
 		beq	copy_file_s_ok
@@ -1324,7 +1324,7 @@ copy_file_check_s:
 		bne	copy_file_destination_error
 copy_file_s_ok:
 	*
-	*  destination‚ðopen‚µ‚Ä‚Ý‚é
+	*  destinationã‚’openã—ã¦ã¿ã‚‹
 	*
 		movem.l	d1/d5/a0-a1,-(a7)
 		movea.l	a1,a0
@@ -1374,7 +1374,7 @@ check_destination:
 		tst.l	realdest_mode
 		bpl	copy_file_check_identical
 		*
-		*  destination‚Íopen‚Å‚«‚½‚ªmode‚ª–³‚¢.
+		*  destinationã¯openã§ããŸãŒmodeãŒç„¡ã„.
 		*
 		moveq	#EBADNAME,d0
 		tst.b	intodirflag
@@ -1390,34 +1390,34 @@ check_destination:
 		btst	#FLAG_n,d5
 		bne	copy_file_return_0
 
-		*  destination‚ð‘‚«ž‚Ýƒ‚[ƒh‚ÅÄƒI[ƒvƒ“‚·‚éD
-		move.w	d2,d0				*  destination‚ð
-		bsr	fclose				*  ˆê’Uclose‚µC
-		move.w	#1,-(a7)			*  ‘‚«ž‚Ýƒ‚[ƒh‚Å
-		pea	realdest_pathname(pc)		*  destination‚ð
-		DOS	_OPEN				*  ƒI[ƒvƒ“‚·‚é
+		*  destinationã‚’æ›¸ãè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§å†ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹ï¼Ž
+		move.w	d2,d0				*  destinationã‚’
+		bsr	fclose				*  ä¸€æ—¦closeã—ï¼Œ
+		move.w	#1,-(a7)			*  æ›¸ãè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§
+		pea	realdest_pathname(pc)		*  destinationã‚’
+		DOS	_OPEN				*  ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹
 		addq.l	#6,a7
 		bra	copy_file_contents
 
 copy_file_check_identical:
 	*
-	*  destination‚Íopen‚Å‚«‚½. mode‚à‚ ‚é.
-	*  source ‚Æ“¯ˆê‚Å‚È‚¢‚©‚ðƒ`ƒFƒbƒN‚·‚éD
+	*  destinationã¯openã§ããŸ. modeã‚‚ã‚ã‚‹.
+	*  source ã¨åŒä¸€ã§ãªã„ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼Ž
 	*
 		tst.b	do_check_identical
 		beq	copy_file_check_u
 
-		*  ‚Ü‚¸ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ð’²‚×‚éD
-		*  ‚±‚ê‚ª“¯ˆê‚Å‚È‚¯‚ê‚ÎƒGƒ“ƒgƒŠ‚à“¯ˆê‚Å‚È‚¢”¤‚Å‚ ‚éD
+		*  ã¾ãšã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’èª¿ã¹ã‚‹ï¼Ž
+		*  ã“ã‚ŒãŒåŒä¸€ã§ãªã‘ã‚Œã°ã‚¨ãƒ³ãƒˆãƒªã‚‚åŒä¸€ã§ãªã„ç­ˆã§ã‚ã‚‹ï¼Ž
 		bsr	get_both_timestamp
 		bne	copy_file_u_ok
 
 		cmp.l	d0,d3
 		bne	copy_file_check_u
 
-		*  FATCHK‚Å’²‚×‚éD
+		*  FATCHKã§èª¿ã¹ã‚‹ï¼Ž
 		bsr	fatchk_source
-		bmi	copy_file_check_u		*  ‚¨‚»‚ç‚­“ÁŽêƒfƒoƒCƒX
+		bmi	copy_file_check_u		*  ãŠãã‚‰ãç‰¹æ®Šãƒ‡ãƒã‚¤ã‚¹
 
 		lea	dest_fatchkbuf(pc),a3
 		exg	a1,a3
@@ -1426,7 +1426,7 @@ copy_file_check_identical:
 		bsr	fatchk
 		movea.l	(a7)+,a0
 		exg	a1,a3
-		bmi	copy_file_check_u		*  ‚¨‚»‚ç‚­“ÁŽêƒfƒoƒCƒX
+		bmi	copy_file_check_u		*  ãŠãã‚‰ãç‰¹æ®Šãƒ‡ãƒã‚¤ã‚¹
 
 		cmpm.w	(a2)+,(a3)+
 		bne	copy_file_check_u
@@ -1447,7 +1447,7 @@ copy_file_check_identical:
 
 copy_file_check_u:
 	*
-	*  -u ‚Ìƒ`ƒFƒbƒN
+	*  -u ã®ãƒã‚§ãƒƒã‚¯
 	*
 		btst	#FLAG_u,d5
 		beq	copy_file_u_ok
@@ -1513,12 +1513,12 @@ create_dest_2:
 		bmi	create_dest_3
 
 		lea	msg_cannot_create_link(pc),a2
-		btst	#MODEBIT_LNK,d3			*  ƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN‚ð
-		bne	copy_file_destination_error	*  ã‘‚«ì¬‚·‚é‚±‚Æ‚Í‚Å‚«‚È‚¢
+		btst	#MODEBIT_LNK,d3			*  ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯ã‚’
+		bne	copy_file_destination_error	*  ä¸Šæ›¸ãä½œæˆã™ã‚‹ã“ã¨ã¯ã§ããªã„
 
 		lea	msg_cannot_overwrite_symlink(pc),a2
-		btst	#MODEBIT_LNK,d0			*  ƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN‚É
-		bne	copy_file_destination_error	*  ã‘‚«‚·‚é‚±‚Æ‚Í‚Å‚«‚È‚¢
+		btst	#MODEBIT_LNK,d0			*  ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯ã«
+		bne	copy_file_destination_error	*  ä¸Šæ›¸ãã™ã‚‹ã“ã¨ã¯ã§ããªã„
 create_dest_3:
 		move.l	source_mode,d0
 		bmi	create_dest_4
@@ -1526,8 +1526,8 @@ create_dest_3:
 		btst	#MODEBIT_VOL,d0
 		beq	create_dest_4
 
-		*  source ‚ªƒ{ƒŠƒ…[ƒ€Eƒ‰ƒxƒ‹‚Å‚ ‚é
-		*  ƒ^[ƒQƒbƒg‚Éƒ{ƒŠƒ…[ƒ€Eƒ‰ƒxƒ‹‚ª–³‚¢‚©‚Ç‚¤‚©‚ðƒ`ƒFƒbƒN‚·‚é
+		*  source ãŒãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™ãƒ«ã§ã‚ã‚‹
+		*  ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™ãƒ«ãŒç„¡ã„ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 
 		movem.l	a0-a1,-(a7)
 		movea.l	a1,a0
@@ -1584,19 +1584,19 @@ create_dest_4:
 create_dest_5:
 		move.l	realdest_mode,d0
 		move.w	d0,-(a7)
-		move.l	a1,-(a7)			*  destination‚ð
-		DOS	_CREATE				*  ì¬‚·‚é
-		addq.l	#6,a7				*  iƒhƒ‰ƒCƒu‚ÌŒŸ¸‚ÍÏ‚ñ‚Å‚¢‚éj
+		move.l	a1,-(a7)			*  destinationã‚’
+		DOS	_CREATE				*  ä½œæˆã™ã‚‹
+		addq.l	#6,a7				*  ï¼ˆãƒ‰ãƒ©ã‚¤ãƒ–ã®æ¤œæŸ»ã¯æ¸ˆã‚“ã§ã„ã‚‹ï¼‰
 copy_file_contents:
 		move.l	d0,d2
 		bmi	copy_file_perror_1
 	*
-	*  source‚ª–¢open‚Å‚ ‚ê‚Î‚±‚±‚Å–{“–‚Éopen‚·‚é
+	*  sourceãŒæœªopenã§ã‚ã‚Œã°ã“ã“ã§æœ¬å½“ã«openã™ã‚‹
 	*
-		bsr	do_open_source			*  source‚ª–¢open‚Å‚ ‚ê‚Î–{“–‚Éopen‚·‚é
+		bsr	do_open_source			*  sourceãŒæœªopenã§ã‚ã‚Œã°æœ¬å½“ã«openã™ã‚‹
 		bmi	copy_file_perror
 	*
-	*  ƒtƒ@ƒCƒ‹‚Ì“à—e‚ðƒRƒs[‚·‚é
+	*  ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	*
 		tst.l	d1
 		bmi	copy_file_contents_done
@@ -1639,7 +1639,7 @@ copy_write:
 		beq	copy_loop
 copy_file_contents_done:
 	*
-	*  -p ‚ªŽw’è‚³‚ê‚Ä‚¢‚ê‚ÎAƒtƒ@ƒCƒ‹‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ðƒRƒs[‚·‚é
+	*  -p ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚Œã°ã€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	*
 		btst	#FLAG_p,d5
 		beq	copy_file_done
@@ -1651,7 +1651,7 @@ copy_file_contents_done:
 		move.w	d2,-(a7)
 		DOS	_FILEDATE
 		addq.l	#6,a7
-			* ƒGƒ‰[ˆ—È—ª (–³Ž‹)
+			* ã‚¨ãƒ©ãƒ¼å‡¦ç†çœç•¥ (ç„¡è¦–)
 copy_file_done:
 		move.l	d2,d0
 		bsr	fclosex
@@ -1790,7 +1790,7 @@ copy_file_perror:
 		bra	copy_file_return_0
 ****************
 *
-*  ƒfƒBƒŒƒNƒgƒŠ‚ðƒRƒs[‚·‚é
+*  ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 *
 copy_directory:
 		*
@@ -1798,8 +1798,8 @@ copy_directory:
 		*                                       |
 		*                                       A3
 	*
-	*  -r -R ‚ªŽw’è‚³‚ê‚Ä‚¢‚é‚È‚çCÄ‹A“I‚ÉƒRƒs[‚·‚é
-	*  ‚³‚à‚È‚­‚ÎƒGƒ‰[
+	*  -r -R ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹ãªã‚‰ï¼Œå†å¸°çš„ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
+	*  ã•ã‚‚ãªãã°ã‚¨ãƒ©ãƒ¼
 	*
 		btst	#FLAG_r,d5
 		bne	copy_directory_1
@@ -1808,11 +1808,11 @@ copy_directory:
 		beq	cannot_copy_directory
 copy_directory_1:
 	*
-	*  -x ‚Ì‚½‚ß‚Ìƒhƒ‰ƒCƒu‚Ìƒ`ƒFƒbƒN
+	*  -x ã®ãŸã‚ã®ãƒ‰ãƒ©ã‚¤ãƒ–ã®ãƒã‚§ãƒƒã‚¯
 	*
 		sf	d2
 		btst	#FLAG_x,d5
-		beq	do_copy_directory		*  ƒ`ƒFƒbƒN•s—v
+		beq	do_copy_directory		*  ãƒã‚§ãƒƒã‚¯ä¸è¦
 
 		tst.l	drive
 		bmi	copy_directory_get_drive
@@ -1847,16 +1847,16 @@ do_copy_directory:
 		st	copy_directory_confirmed(a6)
 do_copy_directory_0:
 	*
-	*  “à—e‚Ì‚»‚ê‚¼‚ê‚É‚Â‚¢‚ÄC“¯ˆê«‚ðƒ`ƒFƒbƒN‚·‚é•K—v‚ª‚ ‚é‚©‚Ç‚¤‚©
+	*  å†…å®¹ã®ãã‚Œãžã‚Œã«ã¤ã„ã¦ï¼ŒåŒä¸€æ€§ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã©ã†ã‹
 	*
 		sf	copy_directory_check_identical(a6)
 		exg	a0,a1
 		bsr	getdno
 		exg	a0,a1
-		bmi	do_copy_directory_3		*  dest dir ‚ªV‹K .. ƒ`ƒFƒbƒN•s—v
+		bmi	do_copy_directory_3		*  dest dir ãŒæ–°è¦ .. ãƒã‚§ãƒƒã‚¯ä¸è¦
 
 		btst	#FLAG_d,d5
-		beq	do_copy_directory_2		*  ƒŠƒ“ƒN‚Ì‰Â”\«‚ª‚ ‚é .. —vƒ`ƒFƒbƒN
+		beq	do_copy_directory_2		*  ãƒªãƒ³ã‚¯ã®å¯èƒ½æ€§ãŒã‚ã‚‹ .. è¦ãƒã‚§ãƒƒã‚¯
 
 		exg	d0,d1
 		tst.b	d2
@@ -1868,29 +1868,29 @@ do_copy_directory_0:
 		movea.l	(a7)+,a0
 do_copy_directory_1:
 		tst.l	d0
-		bmi	do_copy_directory_3		*  src dir ‚ª fatchk •s‰Â .. ƒ`ƒFƒbƒN•s—v
+		bmi	do_copy_directory_3		*  src dir ãŒ fatchk ä¸å¯ .. ãƒã‚§ãƒƒã‚¯ä¸è¦
 
 		cmp.l	d0,d1
-		bne	do_copy_directory_3		*  src ‚Æ dest ‚Í•Êƒhƒ‰ƒCƒu .. ƒ`ƒFƒbƒN•s—v
+		bne	do_copy_directory_3		*  src ã¨ dest ã¯åˆ¥ãƒ‰ãƒ©ã‚¤ãƒ– .. ãƒã‚§ãƒƒã‚¯ä¸è¦
 do_copy_directory_2:
 		st	copy_directory_check_identical(a6)
 do_copy_directory_3:
 	*
-	*  Ä‹AƒŒƒxƒ‹ƒ`ƒFƒbƒN
+	*  å†å¸°ãƒ¬ãƒ™ãƒ«ãƒã‚§ãƒƒã‚¯
 	*
-		addq.l	#1,d7				*  ƒfƒBƒŒƒNƒgƒŠ‚Ì[‚³‚ðƒCƒ“ƒNƒŠƒƒ“ƒg
+		addq.l	#1,d7				*  ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®æ·±ã•ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		cmp.l	#MAXRECURSE,d7
 		bhi	dir_too_deep
 
 		move.l	d7,copy_directory_depth(a6)
 	*
-	*  ƒ\[ƒXEƒfƒBƒŒƒNƒgƒŠ‰º‚Ìƒtƒ@ƒCƒ‹‚ðŒŸõ‚·‚é
+	*  ã‚½ãƒ¼ã‚¹ãƒ»ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¤œç´¢ã™ã‚‹
 	*
 		move.l	a4,copy_directory_tableptr(a6)
 		move.l	a4,copy_directory_tableptr2(a6)
 		clr.l	copy_directory_nentries(a6)
 		movem.l	a0-a1,-(a7)
-		move.w	#MODEVAL_ALL,-(a7)		*  ‚·‚×‚Ä‚ÌƒGƒ“ƒgƒŠ‚ðŒŸõ‚·‚é
+		move.w	#MODEVAL_ALL,-(a7)		*  ã™ã¹ã¦ã®ã‚¨ãƒ³ãƒˆãƒªã‚’æ¤œç´¢ã™ã‚‹
 		move.l	a2,-(a7)
 		pea	filesbuf(pc)
 		DOS	_FILES
@@ -1903,7 +1903,7 @@ scan_directory_contents_loop:
 		bne	scan_directory_contents_vol_ok
 
 		btst.b	#MODEBIT_VOL,filesbuf+ST_MODE(pc)
-		bne	scan_directory_contents_continue	*  ƒ{ƒŠƒ…[ƒ€Eƒ‰ƒxƒ‹‚ÍƒRƒs[‚µ‚È‚¢
+		bne	scan_directory_contents_continue	*  ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™ãƒ«ã¯ã‚³ãƒ”ãƒ¼ã—ãªã„
 scan_directory_contents_vol_ok:
 		btst	#FLAG_S,d5
 		beq	scan_directory_contents_sys_ok
@@ -1966,7 +1966,7 @@ scan_directory_contents_continue:
 scan_directory_contents_done:
 		movem.l	(a7)+,a0-a1
 	*
-	*  destination‚ðƒ`ƒFƒbƒN‚·‚é
+	*  destinationã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	*
 		bclr	#31,d5
 		exg	a0,a1
@@ -1988,31 +1988,31 @@ scan_directory_contents_done:
 		bne	copy_directory_dest_is_nondir
 copy_directory_dest_is_not_link:
 		bsr	is_directory
-		bmi	copy_directory_done		*  ƒGƒ‰[
-		bne	copy_directory_dest_is_dir	*  ƒfƒBƒŒƒNƒgƒŠ‚©‚Ü‚½‚Í
-							*  ƒfƒBƒŒƒNƒgƒŠ‚Ö‚ÌƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN
-		*  destination‚ÍƒfƒBƒŒƒNƒgƒŠ‚Å‚Í‚È‚¢
+		bmi	copy_directory_done		*  ã‚¨ãƒ©ãƒ¼
+		bne	copy_directory_dest_is_dir	*  ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã¾ãŸã¯
+							*  ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¸ã®ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯
+		*  destinationã¯ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã¯ãªã„
 
 		tst.l	d1
 		bpl	copy_directory_dest_is_nondir
 
-		*  destination‚ÌƒpƒX‚ª–³Œø
-		*  destination‚ªƒGƒ“ƒgƒŠ‚Æ‚µ‚Ä‘¶Ý‚µ‚È‚¢
-		*  destination‚ÍƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN‚ÅC‚»‚ÌŽQÆƒtƒ@ƒCƒ‹‚ª‘¶Ý‚µ‚È‚¢
+		*  destinationã®ãƒ‘ã‚¹ãŒç„¡åŠ¹
+		*  destinationãŒã‚¨ãƒ³ãƒˆãƒªã¨ã—ã¦å­˜åœ¨ã—ãªã„
+		*  destinationã¯ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯ã§ï¼Œãã®å‚ç…§ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã„
 
 		btst	#FLAG_n,d5
 		beq	copy_directory_do_mkdir
 
 		moveq	#EBADNAME,d0
 		tst.l	d3
-		bpl	copy_directory_perror		*  ƒfƒoƒCƒX..ƒGƒ‰[
+		bpl	copy_directory_perror		*  ãƒ‡ãƒã‚¤ã‚¹..ã‚¨ãƒ©ãƒ¼
 
 		move.l	d3,d0
 		cmp.l	#ENOFILE,d0
-		beq	copy_directory_mkdir_done	*  ‘¶Ý‚µ‚È‚¢..mkdir
+		beq	copy_directory_mkdir_done	*  å­˜åœ¨ã—ãªã„..mkdir
 
 		cmp.l	#ENODIR,d0
-		bne	copy_directory_perror		*  ƒpƒX‚ª‘¶Ý‚µ‚È‚¢..ƒGƒ‰[
+		bne	copy_directory_perror		*  ãƒ‘ã‚¹ãŒå­˜åœ¨ã—ãªã„..ã‚¨ãƒ©ãƒ¼
 
 		tst.b	intodirflag
 		bne	copy_directory_mkdir_done
@@ -2021,7 +2021,7 @@ copy_directory_perror:
 		bra	copy_directory_done
 
 copy_directory_dest_is_nondir:
-		*  real destination ‚ª non-directory
+		*  real destination ãŒ non-directory
 		exg	a0,a1
 		moveq	#MODEVAL_DIR,d0
 		bsr	confirm_overwrite
@@ -2035,7 +2035,7 @@ copy_directory_dest_is_nondir:
 		btst	#FLAG_n,d5
 		bne	copy_directory_mkdir_done
 
-		*  real destination ‚ðíœ‚·‚é
+		*  real destination ã‚’å‰Šé™¤ã™ã‚‹
 		move.l	a0,-(a7)
 		lea	realdest_pathname(pc),a0
 		bsr	unlink
@@ -2066,20 +2066,20 @@ copy_directory_mkdir_done:
 		exg	a0,a1
 		bsr	verbose
 		exg	a0,a1
-		bset	#31,d5				*  real destinaiton ‚Í new
+		bset	#31,d5				*  real destinaiton ã¯ new
 		moveq	#MODEVAL_DIR,d1
 copy_directory_attributes:
 		exg	a0,a1
 		btst	#FLAG_n,d5
 		bne	copy_directory_contents
 
-		btst	#31,d5				*  destination ‚ª‚à‚Æ‚à‚Æ‘¶Ý‚µ‚Ä‚¢‚½
-		beq	copy_directory_contents		*  ê‡‚É‚ÍA‚»‚ÌŽž‚Æ‘®«‚Í•Û‘¶‚·‚é
+		btst	#31,d5				*  destination ãŒã‚‚ã¨ã‚‚ã¨å­˜åœ¨ã—ã¦ã„ãŸ
+		beq	copy_directory_contents		*  å ´åˆã«ã¯ã€ãã®æ™‚åˆ»ã¨å±žæ€§ã¯ä¿å­˜ã™ã‚‹
 
 		btst	#FLAG_p,d5
 		beq	copy_directory_mode
 	*
-	*  ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ðƒRƒs[‚·‚é
+	*  ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	*
 		moveq	#EDIRVOL,d1
 		bsr	get_source_time
@@ -2100,14 +2100,14 @@ copy_directory_attributes:
 
 		move.l	d3,-(a7)
 		move.w	d1,-(a7)
-		DOS	_FILEDATE			*  ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ðÝ’è‚·‚é
+		DOS	_FILEDATE			*  ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’è¨­å®šã™ã‚‹
 		addq.l	#6,a7
-			* ƒGƒ‰[ˆ—È—ª (–³Ž‹)
+			* ã‚¨ãƒ©ãƒ¼å‡¦ç†çœç•¥ (ç„¡è¦–)
 		move.w	d1,d0
 		bsr	fclose
 copy_directory_mode:
 	*
-	*  ‘®«‚ðƒRƒs[‚·‚é
+	*  å±žæ€§ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	*
 		move.l	source_mode,d0
 		bpl	copy_directory_mode_1
@@ -2116,11 +2116,11 @@ copy_directory_mode:
 copy_directory_mode_1:
 		lea	realdest_pathname(pc),a0
 		bsr	newmode
-		bsr	lchmod				*  ‘®«‚ðÝ’è‚·‚é
-			* ƒGƒ‰[ˆ—È—ª (–³Ž‹)
+		bsr	lchmod				*  å±žæ€§ã‚’è¨­å®šã™ã‚‹
+			* ã‚¨ãƒ©ãƒ¼å‡¦ç†çœç•¥ (ç„¡è¦–)
 copy_directory_contents:
 	*
-	*  ƒ\[ƒXEƒfƒBƒŒƒNƒgƒŠ‰º‚Ìƒtƒ@ƒCƒ‹‚ðƒRƒs[‚·‚é
+	*  ã‚½ãƒ¼ã‚¹ãƒ»ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	*
 		bclr	#FLAG_path,d5
 copy_directory_contents_loop:
@@ -2166,22 +2166,22 @@ copy_directory_done:
 *****************************************************************
 remove_dest:
 .if 0
-		*  GNU fileutils 3.3 ‚Ì cp ‚Å‚ÍCdestination‚ªƒVƒ“ƒ{ƒŠƒbƒNE
-		*  ƒŠƒ“ƒN‚Å‚ ‚ë‚¤‚Æ‰½‚Å‚ ‚ë‚¤‚Ædestination‚»‚Ì‚à‚Ì‚ªíœ‚³‚ê‚é
+		*  GNU fileutils 3.3 ã® cp ã§ã¯ï¼ŒdestinationãŒã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»
+		*  ãƒªãƒ³ã‚¯ã§ã‚ã‚ã†ã¨ä½•ã§ã‚ã‚ã†ã¨destinationãã®ã‚‚ã®ãŒå‰Šé™¤ã•ã‚Œã‚‹
 		exg	a0,a1
 		bsr	unlink
 		exg	a0,a1
-		*  ‚±‚ê‚Í‚¨‚©‚µ‚¢
+		*  ã“ã‚Œã¯ãŠã‹ã—ã„
 .else
 .if 0
-		*  real destination ‚ðíœ‚·‚é
+		*  real destination ã‚’å‰Šé™¤ã™ã‚‹
 		move.l	a0,-(a7)
 		lea	realdest_pathname(pc),a0
 		bsr	unlink
 		movea.l	(a7)+,a0
-		*  ‚±‚ê‚ª³‚µ‚¢‚ÆŽv‚¤
+		*  ã“ã‚ŒãŒæ­£ã—ã„ã¨æ€ã†
 .else
-		*  íœ‚·‚é‘ã‚í‚è‚É‘®«‚ð•ÏX‚µ‚Äíœ‚µ‚½‚Ó‚è‚ð‚·‚éD
+		*  å‰Šé™¤ã™ã‚‹ä»£ã‚ã‚Šã«å±žæ€§ã‚’å¤‰æ›´ã—ã¦å‰Šé™¤ã—ãŸãµã‚Šã‚’ã™ã‚‹ï¼Ž
 		move.l	realdest_mode,d0
 		and.w	#MODEVAL_LNK|MODEVAL_VOL|MODEVAL_SYS|MODEVAL_RDO,d0
 		beq	remove_dest_ok
@@ -2192,45 +2192,45 @@ remove_dest:
 		bsr	lchmod
 		movea.l	(a7)+,a0
 remove_dest_ok:
-		*  ‚±‚Ì•û‚ª‘¬‚¢D
+		*  ã“ã®æ–¹ãŒé€Ÿã„ï¼Ž
 .endif
 .endif
 		rts
 *****************************************************************
-* get_both_timestamp - source‚Ædestination‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ð“¾‚é
+* get_both_timestamp - sourceã¨destinationã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å¾—ã‚‹
 *
 * CALL
-*      D1.L                source‚ðopen‚µ‚½Œ‹‰Ê
-*                          open‚ª¬Œ÷‚µ‚½‚È‚çƒtƒ@ƒCƒ‹Eƒnƒ“ƒhƒ‹
-*                          Ž¸”s‚µ‚½‚È‚çDOSƒGƒ‰[EƒR[ƒh
-*                          –¢open‚È‚ç‚Î -1
+*      D1.L                sourceã‚’openã—ãŸçµæžœ
+*                          openãŒæˆåŠŸã—ãŸãªã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ãƒãƒ³ãƒ‰ãƒ«
+*                          å¤±æ•—ã—ãŸãªã‚‰DOSã‚¨ãƒ©ãƒ¼ãƒ»ã‚³ãƒ¼ãƒ‰
+*                          æœªopenãªã‚‰ã° -1
 *
-*      D2.L                destination‚ðopen‚µ‚½Œ‹‰Ê
-*                          open‚ª¬Œ÷‚µ‚½‚È‚çƒtƒ@ƒCƒ‹Eƒnƒ“ƒhƒ‹
-*                          Ž¸”s‚µ‚½‚È‚çDOSƒGƒ‰[EƒR[ƒh
+*      D2.L                destinationã‚’openã—ãŸçµæžœ
+*                          openãŒæˆåŠŸã—ãŸãªã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ãƒãƒ³ãƒ‰ãƒ«
+*                          å¤±æ•—ã—ãŸãªã‚‰DOSã‚¨ãƒ©ãƒ¼ãƒ»ã‚³ãƒ¼ãƒ‰
 *
-*      source_time         source‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-*                          -1‚È‚ç, ‚±‚±‚Åƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ðŽæ“¾‚µ‚Ä
-*                          ‹A‚éD‚»‚¤‚Å‚È‚¯‚ê‚ÎC‚±‚Ì’l‚ª‚»‚Ì‚Ü‚Ü
-*                          –ß‚è’l‚Æ‚È‚éD
+*      source_time         sourceã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
+*                          -1ãªã‚‰, ã“ã“ã§ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å–å¾—ã—ã¦
+*                          å¸°ã‚‹ï¼Žãã†ã§ãªã‘ã‚Œã°ï¼Œã“ã®å€¤ãŒãã®ã¾ã¾
+*                          æˆ»ã‚Šå€¤ã¨ãªã‚‹ï¼Ž
 *
-*      realdest_time       destination‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-*                          -1‚È‚ç, ‚±‚±‚Åƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ðŽæ“¾‚µ‚Ä
-*                          ‹A‚éD‚»‚¤‚Å‚È‚¯‚ê‚ÎC‚±‚Ì’l‚ª‚»‚Ì‚Ü‚Ü
-*                          –ß‚è’l‚Æ‚È‚éD
+*      realdest_time       destinationã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
+*                          -1ãªã‚‰, ã“ã“ã§ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å–å¾—ã—ã¦
+*                          å¸°ã‚‹ï¼Žãã†ã§ãªã‘ã‚Œã°ï¼Œã“ã®å€¤ãŒãã®ã¾ã¾
+*                          æˆ»ã‚Šå€¤ã¨ãªã‚‹ï¼Ž
 *
-*      source_pathname     source‚ÌŽÀ‘Ì‚ÌƒpƒX–¼
-*      realdest_pathname   destination‚ÌŽÀ‘Ì‚ÌƒpƒX–¼
+*      source_pathname     sourceã®å®Ÿä½“ã®ãƒ‘ã‚¹å
+*      realdest_pathname   destinationã®å®Ÿä½“ã®ãƒ‘ã‚¹å
 *
 * RETURN
-*      D3.L           real_dest‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-*      source_time    CCR==NE‚È‚ç–³Œø
+*      D3.L           real_destã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
+*      source_time    CCR==NEãªã‚‰ç„¡åŠ¹
 *
-*      D0.L           source‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-*      source_time    CCR==NE‚È‚ç–³Œø
+*      D0.L           sourceã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
+*      source_time    CCR==NEãªã‚‰ç„¡åŠ¹
 *
-*      CCR            source‚Ædestination‚Ì—¼•û‚ÌŽæ“¾‚É¬Œ÷‚µ‚½‚È
-*                     ‚çEQ
+*      CCR            sourceã¨destinationã®ä¸¡æ–¹ã®å–å¾—ã«æˆåŠŸã—ãŸãª
+*                     ã‚‰EQ
 *****************************************************************
 get_both_timestamp:
 		move.l	realdest_time,d0
@@ -2244,29 +2244,29 @@ get_both_timestamp:
 		move.l	d0,realdest_time
 		move.l	d0,d3
 	*
-	*  source‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ð“¾‚é
+	*  sourceã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å¾—ã‚‹
 	*
 *****************************************************************
-* get_source_time - source ‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ð“¾‚é
+* get_source_time - source ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å¾—ã‚‹
 *
 * CALL
-*      D1.L                source‚ðopen‚µ‚½Œ‹‰Ê
-*                          open‚ª¬Œ÷‚µ‚½‚È‚çƒtƒ@ƒCƒ‹Eƒnƒ“ƒhƒ‹
-*                          Ž¸”s‚µ‚½‚È‚çDOSƒGƒ‰[EƒR[ƒh
-*                          –¢open‚È‚ç‚Î -1
+*      D1.L                sourceã‚’openã—ãŸçµæžœ
+*                          openãŒæˆåŠŸã—ãŸãªã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ãƒãƒ³ãƒ‰ãƒ«
+*                          å¤±æ•—ã—ãŸãªã‚‰DOSã‚¨ãƒ©ãƒ¼ãƒ»ã‚³ãƒ¼ãƒ‰
+*                          æœªopenãªã‚‰ã° -1
 *
-*      source_time         source‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-*                          -1‚È‚ç, ‚±‚±‚Åƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ðŽæ“¾‚µ‚Ä
-*                          ‹A‚éD‚»‚¤‚Å‚È‚¯‚ê‚ÎC‚±‚Ì’l‚ª‚»‚Ì‚Ü‚Ü
-*                          –ß‚è’l‚Æ‚È‚éD
+*      source_time         sourceã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
+*                          -1ãªã‚‰, ã“ã“ã§ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å–å¾—ã—ã¦
+*                          å¸°ã‚‹ï¼Žãã†ã§ãªã‘ã‚Œã°ï¼Œã“ã®å€¤ãŒãã®ã¾ã¾
+*                          æˆ»ã‚Šå€¤ã¨ãªã‚‹ï¼Ž
 *
-*      source_pathname     source‚ÌŽÀ‘Ì‚ÌƒpƒX–¼
+*      source_pathname     sourceã®å®Ÿä½“ã®ãƒ‘ã‚¹å
 *
 * RETURN
-*      D0.L           source‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-*      source_time    CCR==NE‚È‚ç–³Œø
+*      D0.L           sourceã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
+*      source_time    CCR==NEãªã‚‰ç„¡åŠ¹
 *
-*      CCR            Žæ“¾‚É¬Œ÷‚µ‚½‚È‚çEQ
+*      CCR            å–å¾—ã«æˆåŠŸã—ãŸãªã‚‰EQ
 *****************************************************************
 get_source_time:
 		move.l	source_time,d0
@@ -2281,21 +2281,21 @@ get_source_time:
 get_both_timestamp_return:
 		rts
 *****************************************************************
-* get_filedate - ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ð“¾‚é
+* get_filedate - ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å¾—ã‚‹
 *
 * CALL
-*      D0.L      ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-*                -1‚È‚ç, ‚±‚±‚Åƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ðŽæ“¾‚µ‚Ä‹A‚é
-*                ‚»‚¤‚Å‚È‚¯‚ê‚ÎC‚±‚Ì’l‚ª‚»‚Ì‚Ü‚Ü–ß‚è’l‚Æ‚È‚é
+*      D0.L      ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
+*                -1ãªã‚‰, ã“ã“ã§ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å–å¾—ã—ã¦å¸°ã‚‹
+*                ãã†ã§ãªã‘ã‚Œã°ï¼Œã“ã®å€¤ãŒãã®ã¾ã¾æˆ»ã‚Šå€¤ã¨ãªã‚‹
 *
-*      D1.L      ƒtƒ@ƒCƒ‹Eƒnƒ“ƒhƒ‹
-*                •‰‚È‚ç‚ÎƒI[ƒvƒ“‚µ‚Ä‚¢‚È‚¢
+*      D1.L      ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ãƒãƒ³ãƒ‰ãƒ«
+*                è² ãªã‚‰ã°ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã„ãªã„
 *
-*      A0        ŽÀ‘Ì‚ÌƒpƒX–¼
+*      A0        å®Ÿä½“ã®ãƒ‘ã‚¹å
 *
 * RETURN
-*      D0.L      ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-*                ãˆÊƒ[ƒh‚ª$ffff‚È‚çDOSƒGƒ‰[EƒR[ƒh
+*      D0.L      ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
+*                ä¸Šä½ãƒ¯ãƒ¼ãƒ‰ãŒ$ffffãªã‚‰DOSã‚¨ãƒ©ãƒ¼ãƒ»ã‚³ãƒ¼ãƒ‰
 *
 *      CCR       cmp.l #$fffeffff,d0
 *****************************************************************
@@ -2557,19 +2557,19 @@ open_source:
 		tst.l	d0
 		rts
 *****************************************************************
-* xopen - ƒtƒ@ƒCƒ‹i‚Ü‚½‚ÍƒfƒoƒCƒXj‚ðƒI[ƒvƒ“‚·‚é
+* xopen - ãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆã¾ãŸã¯ãƒ‡ãƒã‚¤ã‚¹ï¼‰ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹
 *
 * CALL
-*      A0     ƒI[ƒvƒ“‚·‚éƒtƒ@ƒCƒ‹i‚Ü‚½‚ÍƒfƒoƒCƒXj–¼
-*      A1     ŽÀÛ‚ÉƒI[ƒvƒ“‚µ‚½ƒtƒ@ƒCƒ‹i‚Ü‚½‚ÍƒfƒoƒCƒXj–¼‚ðŠi”[‚·‚éƒoƒbƒtƒ@
-*             i128ƒoƒCƒg•K—vj
-*      D1.L   ƒtƒ@ƒCƒ‹‚Ìƒ‚[ƒhD•s–¾‚È‚ç‚Î -1D
-*      D5.B   FLAG_dƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚ê‚ÎAƒtƒ@ƒCƒ‹‚ªƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN‚Å‚ ‚é‚Æ‚«
-*             ƒŠƒ“ƒNEƒtƒ@ƒCƒ‹Ž©g‚ðƒI[ƒvƒ“‚·‚é
+*      A0     ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆã¾ãŸã¯ãƒ‡ãƒã‚¤ã‚¹ï¼‰å
+*      A1     å®Ÿéš›ã«ã‚ªãƒ¼ãƒ—ãƒ³ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆã¾ãŸã¯ãƒ‡ãƒã‚¤ã‚¹ï¼‰åã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+*             ï¼ˆ128ãƒã‚¤ãƒˆå¿…è¦ï¼‰
+*      D1.L   ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ¢ãƒ¼ãƒ‰ï¼Žä¸æ˜Žãªã‚‰ã° -1ï¼Ž
+*      D5.B   FLAG_dãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã‚Œã°ã€ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯ã§ã‚ã‚‹ã¨ã
+*             ãƒªãƒ³ã‚¯ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«è‡ªèº«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹
 *
 * RETURN
-*      D0.L   ƒI[ƒvƒ“‚µ‚½ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹D‚Ü‚½‚ÍDOSƒGƒ‰[EƒR[ƒh
-*      D1.L   ŽÀÛ‚Ìƒtƒ@ƒCƒ‹‚Ìƒ‚[ƒhD‚Ü‚½‚ÍDOSƒGƒ‰[EƒR[ƒh
+*      D0.L   ã‚ªãƒ¼ãƒ—ãƒ³ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ï¼Žã¾ãŸã¯DOSã‚¨ãƒ©ãƒ¼ãƒ»ã‚³ãƒ¼ãƒ‰
+*      D1.L   å®Ÿéš›ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ¢ãƒ¼ãƒ‰ï¼Žã¾ãŸã¯DOSã‚¨ãƒ©ãƒ¼ãƒ»ã‚³ãƒ¼ãƒ‰
 *****************************************************************
 xopen:
 		movem.l	d4/a2-a3/a6,-(a7)
@@ -2578,21 +2578,21 @@ xopen:
 
 		bsr	lgetmode
 		move.l	d0,d1
-		bmi	xopen_normal			*  ƒtƒ@ƒCƒ‹‚Í–³‚¢ -> ’Êí‚Ì OPEN
-							*  iƒfƒoƒCƒX‚©‚à’m‚ê‚È‚¢j
+		bmi	xopen_normal			*  ãƒ•ã‚¡ã‚¤ãƒ«ã¯ç„¡ã„ -> é€šå¸¸ã® OPEN
+							*  ï¼ˆãƒ‡ãƒã‚¤ã‚¹ã‹ã‚‚çŸ¥ã‚Œãªã„ï¼‰
 xopen_1:
 		btst	#MODEBIT_LNK,d1
-		beq	xopen_normal			*  SYMLINK‚Å‚Í‚È‚¢ -> ’Êí‚Ì OPEN
+		beq	xopen_normal			*  SYMLINKã§ã¯ãªã„ -> é€šå¸¸ã® OPEN
 
-		*  ƒtƒ@ƒCƒ‹‚ÍƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN‚Å‚ ‚é
+		*  ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯ã§ã‚ã‚‹
 
-		btst	#FLAG_d,d5			*  -dƒtƒ‰ƒO‚ªŽw’è‚³‚ê‚Ä‚¢‚é‚È‚ç
-		bne	xopen_link_on_lndrv		*  Žw’èƒtƒ@ƒCƒ‹‚»‚Ì‚à‚Ì‚ðopen‚·‚é
+		btst	#FLAG_d,d5			*  -dãƒ•ãƒ©ã‚°ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹ãªã‚‰
+		bne	xopen_link_on_lndrv		*  æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ãã®ã‚‚ã®ã‚’openã™ã‚‹
 
-		moveq	#-1,d1				*  mode‚Í–Y‚ê‚é
+		moveq	#-1,d1				*  modeã¯å¿˜ã‚Œã‚‹
 		moveq	#LNDRV_getrealpath,d0
 		tst.l	lndrv
-		bne	xopen_on_lndrv			*  ƒŠƒ“ƒN‚ªŽQÆ‚·‚éƒtƒ@ƒCƒ‹‚ðopen‚·‚é
+		bne	xopen_on_lndrv			*  ãƒªãƒ³ã‚¯ãŒå‚ç…§ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’openã™ã‚‹
 
 		lea	msg_cannot_access_link(pc),a2
 		bsr	werror_myname_word_colon_msg
@@ -2600,17 +2600,17 @@ xopen_1:
 		bra	xopen_done
 
 xopen_link_on_lndrv:
-		tst.l	lndrv				*  lndrv‚ªí’“‚µ‚Ä‚¢‚È‚¢‚È‚ç
-		beq	xopen_normal			*  ’Êí‚Ì OPEN
+		tst.l	lndrv				*  lndrvãŒå¸¸é§ã—ã¦ã„ãªã„ãªã‚‰
+		beq	xopen_normal			*  é€šå¸¸ã® OPEN
 
 		moveq	#LNDRV_realpathcpy,d0
 xopen_on_lndrv:
 		movea.l	lndrv,a2
 		movea.l	(a2,d0.l),a3
 		clr.l	-(a7)
-		DOS	_SUPER				*  ƒX[ƒp[ƒoƒCƒUEƒ‚[ƒh‚ÉØ‚èŠ·‚¦‚é
+		DOS	_SUPER				*  ã‚¹ãƒ¼ãƒ‘ãƒ¼ãƒã‚¤ã‚¶ãƒ»ãƒ¢ãƒ¼ãƒ‰ã«åˆ‡ã‚Šæ›ãˆã‚‹
 		addq.l	#4,a7
-		move.l	d0,-(a7)			*  ‘O‚Ì SSP ‚Ì’l
+		move.l	d0,-(a7)			*  å‰ã® SSP ã®å€¤
 		movem.l	d1-d3/d5-d7/a0-a5,-(a7)
 		move.l	a0,-(a7)
 		move.l	a1,-(a7)
@@ -2647,13 +2647,13 @@ xopen_on_lndrv_1:
 		addq.l	#6,a7
 		movem.l	(a7)+,d1-d3/d5-d7/a0-a5
 		move.l	d0,d4
-		DOS	_SUPER				*  ƒ†[ƒUEƒ‚[ƒh‚É–ß‚·
+		DOS	_SUPER				*  ãƒ¦ãƒ¼ã‚¶ãƒ»ãƒ¢ãƒ¼ãƒ‰ã«æˆ»ã™
 		addq.l	#4,a7
 		move.l	d4,d0
 		bra	xopen_done
 
 xopen_readlink_error:
-		DOS	_SUPER				*  ƒ†[ƒUEƒ‚[ƒh‚É–ß‚·
+		DOS	_SUPER				*  ãƒ¦ãƒ¼ã‚¶ãƒ»ãƒ¢ãƒ¼ãƒ‰ã«æˆ»ã™
 		addq.l	#4,a7
 xopen_normal:
 		exg	a0,a1
@@ -2710,24 +2710,24 @@ make_dirsearchpath_return:
 		movem.l	(a7)+,a1-a2
 		rts
 *****************************************************************
-* is_directory, is_directory_2 - –¼‘O‚ªƒfƒBƒŒƒNƒgƒŠ‚Å‚ ‚é‚©‚Ç‚¤‚©‚ð’²‚×‚é
+* is_directory, is_directory_2 - åå‰ãŒãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 *
 * CALL
-*      A0     –¼‘O
+*      A0     åå‰
 *
 *      is_directory_2
-*      A2     –¼‘O/*.* ‚ðŠi”[‚·‚éƒoƒbƒtƒ@
+*      A2     åå‰/*.* ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
 *
 * RETURN
-*      D0.L   –¼‘O/*.* ‚ª’·‚·‚¬‚é‚È‚ç‚Î -1D
-*             ‚±‚Ì‚Æ‚«ƒGƒ‰[ƒƒbƒZ[ƒW‚ª•\Ž¦‚³‚êCD6.L ‚É‚Í 2 ‚ªƒZƒbƒg‚³‚ê‚éD
+*      D0.L   åå‰/*.* ãŒé•·ã™ãŽã‚‹ãªã‚‰ã° -1ï¼Ž
+*             ã“ã®ã¨ãã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒè¡¨ç¤ºã•ã‚Œï¼ŒD6.L ã«ã¯ 2 ãŒã‚»ãƒƒãƒˆã•ã‚Œã‚‹ï¼Ž
 *
-*             ‚»‚¤‚Å‚È‚¯‚ê‚ÎC–¼‘O‚ªƒfƒBƒŒƒNƒgƒŠ‚È‚ç‚Î 1C‚³‚à‚È‚­‚Î 0
+*             ãã†ã§ãªã‘ã‚Œã°ï¼Œåå‰ãŒãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰ã° 1ï¼Œã•ã‚‚ãªãã° 0
 *
 *      CCR    TST.L D0
 *
 *      is_directory_2
-*      (A2)   –¼‘O/*.* ‚ªŠi”[‚³‚ê‚é
+*      (A2)   åå‰/*.* ãŒæ ¼ç´ã•ã‚Œã‚‹
 *                  |
 *                  A3
 *****************************************************************
@@ -2745,7 +2745,7 @@ is_directory_2:
 		bsr	make_dirsearchpath
 		bmi	is_directory_return
 
-		move.w	#MODEVAL_ALL,-(a7)		*  ‚·‚×‚Ä‚ÌƒGƒ“ƒgƒŠ‚ðŒŸõ‚·‚é
+		move.w	#MODEVAL_ALL,-(a7)		*  ã™ã¹ã¦ã®ã‚¨ãƒ³ãƒˆãƒªã‚’æ¤œç´¢ã™ã‚‹
 		move.l	a2,-(a7)
 		pea	filesbuf(pc)
 		DOS	_FILES
@@ -2866,70 +2866,70 @@ perror_table:
 	dc.w	msg_error-sys_errmsgs			*  25 (-26)
 
 sys_errmsgs:
-msg_error:		dc.b	'ƒGƒ‰[',0
-msg_nofile:		dc.b	'‚±‚Ì‚æ‚¤‚Èƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ‚Í‚ ‚è‚Ü‚¹‚ñ',0
-msg_nopath:		dc.b	'ƒpƒX‚ª‘¶Ý‚µ‚Ä‚¢‚Ü‚¹‚ñ',0
-msg_too_many_openfiles:	dc.b	'ƒI[ƒvƒ“‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ª‘½‚·‚¬‚Ü‚·',0
-msg_bad_name:		dc.b	'–¼‘O‚ª–³Œø‚Å‚·',0
-msg_bad_drive:		dc.b	'ƒhƒ‰ƒCƒu‚ÌŽw’è‚ª–³Œø‚Å‚·',0
-msg_write_disabled:	dc.b	'‘‚«ž‚Ý‚ª‹–‰Â‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ',0
-msg_cannot_mkdir:	dc.b	'ƒfƒBƒŒƒNƒgƒŠ‚ðì¬‚Å‚«‚Ü‚¹‚ñ: ƒtƒ@ƒCƒ‹‚ª‘¶Ý‚µ‚Ä‚¢‚Ü‚·',0
-msg_directory_full:	dc.b	'ƒfƒBƒŒƒNƒgƒŠ‚ª–ž”t‚Å‚·',0
-msg_disk_full:		dc.b	'ƒfƒBƒXƒN‚ª–ž”t‚Å‚·',0
+msg_error:		dc.b	'ã‚¨ãƒ©ãƒ¼',0
+msg_nofile:		dc.b	'ã“ã®ã‚ˆã†ãªãƒ•ã‚¡ã‚¤ãƒ«ã‚„ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¯ã‚ã‚Šã¾ã›ã‚“',0
+msg_nopath:		dc.b	'ãƒ‘ã‚¹ãŒå­˜åœ¨ã—ã¦ã„ã¾ã›ã‚“',0
+msg_too_many_openfiles:	dc.b	'ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãŒå¤šã™ãŽã¾ã™',0
+msg_bad_name:		dc.b	'åå‰ãŒç„¡åŠ¹ã§ã™',0
+msg_bad_drive:		dc.b	'ãƒ‰ãƒ©ã‚¤ãƒ–ã®æŒ‡å®šãŒç„¡åŠ¹ã§ã™',0
+msg_write_disabled:	dc.b	'æ›¸ãè¾¼ã¿ãŒè¨±å¯ã•ã‚Œã¦ã„ã¾ã›ã‚“',0
+msg_cannot_mkdir:	dc.b	'ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½œæˆã§ãã¾ã›ã‚“: ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¦ã„ã¾ã™',0
+msg_directory_full:	dc.b	'ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒæº€æ¯ã§ã™',0
+msg_disk_full:		dc.b	'ãƒ‡ã‚£ã‚¹ã‚¯ãŒæº€æ¯ã§ã™',0
 
 msg_myname:			dc.b	'cp'
 msg_colon:			dc.b	': ',0
-msg_dos_version_mismatch:	dc.b	'ƒo[ƒWƒ‡ƒ“2.00ˆÈ~‚ÌHuman68k‚ª•K—v‚Å‚·',CR,LF,0
-msg_no_memory:			dc.b	'ƒƒ‚ƒŠ‚ª‘«‚è‚Ü‚¹‚ñ',CR,LF,0
-msg_illegal_option:		dc.b	'•s³‚ÈƒIƒvƒVƒ‡ƒ“ -- ',0
-msg_bad_arg:			dc.b	'ˆø”‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ',0
-msg_too_few_args:		dc.b	'ˆø”‚ª‘«‚è‚Ü‚¹‚ñ',0
-msg_too_long_pathname:		dc.b	'ƒpƒX–¼‚ª’·‰ß‚¬‚Ü‚·',0
-msg_not_a_directory:		dc.b	'ƒfƒBƒŒƒNƒgƒŠ‚Å‚Í‚ ‚è‚Ü‚¹‚ñ',0
-msg_nodir:			dc.b	'‚±‚Ì‚æ‚¤‚ÈƒfƒBƒŒƒNƒgƒŠ‚Í‚ ‚è‚Ü‚¹‚ñ',0
-msg_dir_too_deep:		dc.b	'ƒfƒBƒŒƒNƒgƒŠ‚ª[‰ß‚¬‚Äˆ—‚Å‚«‚Ü‚¹‚ñ',0
-msg_and:			dc.b	' ‚Æ ',0
-msg_are_identical:		dc.b	' ‚Æ‚Í“¯ˆê‚Ìƒtƒ@ƒCƒ‹‚Å‚·iƒRƒs[‚µ‚Ü‚¹‚ñj',0
-msg_is_directory:		dc.b	'ƒfƒBƒŒƒNƒgƒŠ‚Å‚·iƒRƒs[‚µ‚Ü‚¹‚ñj',0
-msg_is_volumelabel:		dc.b	'ƒ{ƒŠƒ…[ƒ€Eƒ‰ƒxƒ‹‚Å‚·iƒRƒs[‚µ‚Ü‚¹‚ñj',0
-msg_is_systemfile:		dc.b	'ƒVƒXƒeƒ€Eƒtƒ@ƒCƒ‹‚Å‚·iƒRƒs[‚µ‚Ü‚¹‚ñj',0
-msg_unadjustable_name:		dc.b	': ’²®‚Å‚«‚È‚¢–¼‘O‚Å‚·iƒRƒs[‚µ‚Ü‚¹‚ñj',CR,LF,0
-msg_unfitname:			dc.b	': –¼‘O‚ª•s“KŠi‚Å‚·',0
-msg_will_ask:			dc.b	'i‘ã‚í‚è‚Ì–¼‘O‚ðq‚Ë‚Ü‚·j',CR,LF,0
-msg_destname:			dc.b	'‘ã‚í‚è‚Ì–¼‘Oi[.]:ƒRƒs[‚µ‚È‚¢',0
+msg_dos_version_mismatch:	dc.b	'ãƒãƒ¼ã‚¸ãƒ§ãƒ³2.00ä»¥é™ã®Human68kãŒå¿…è¦ã§ã™',CR,LF,0
+msg_no_memory:			dc.b	'ãƒ¡ãƒ¢ãƒªãŒè¶³ã‚Šã¾ã›ã‚“',CR,LF,0
+msg_illegal_option:		dc.b	'ä¸æ­£ãªã‚ªãƒ—ã‚·ãƒ§ãƒ³ -- ',0
+msg_bad_arg:			dc.b	'å¼•æ•°ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“',0
+msg_too_few_args:		dc.b	'å¼•æ•°ãŒè¶³ã‚Šã¾ã›ã‚“',0
+msg_too_long_pathname:		dc.b	'ãƒ‘ã‚¹åãŒé•·éŽãŽã¾ã™',0
+msg_not_a_directory:		dc.b	'ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã¯ã‚ã‚Šã¾ã›ã‚“',0
+msg_nodir:			dc.b	'ã“ã®ã‚ˆã†ãªãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¯ã‚ã‚Šã¾ã›ã‚“',0
+msg_dir_too_deep:		dc.b	'ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒæ·±éŽãŽã¦å‡¦ç†ã§ãã¾ã›ã‚“',0
+msg_and:			dc.b	' ã¨ ',0
+msg_are_identical:		dc.b	' ã¨ã¯åŒä¸€ã®ãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ï¼ˆã‚³ãƒ”ãƒ¼ã—ã¾ã›ã‚“ï¼‰',0
+msg_is_directory:		dc.b	'ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã™ï¼ˆã‚³ãƒ”ãƒ¼ã—ã¾ã›ã‚“ï¼‰',0
+msg_is_volumelabel:		dc.b	'ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™ãƒ«ã§ã™ï¼ˆã‚³ãƒ”ãƒ¼ã—ã¾ã›ã‚“ï¼‰',0
+msg_is_systemfile:		dc.b	'ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ï¼ˆã‚³ãƒ”ãƒ¼ã—ã¾ã›ã‚“ï¼‰',0
+msg_unadjustable_name:		dc.b	': èª¿æ•´ã§ããªã„åå‰ã§ã™ï¼ˆã‚³ãƒ”ãƒ¼ã—ã¾ã›ã‚“ï¼‰',CR,LF,0
+msg_unfitname:			dc.b	': åå‰ãŒä¸é©æ ¼ã§ã™',0
+msg_will_ask:			dc.b	'ï¼ˆä»£ã‚ã‚Šã®åå‰ã‚’å°‹ã­ã¾ã™ï¼‰',CR,LF,0
+msg_destname:			dc.b	'ä»£ã‚ã‚Šã®åå‰ï¼ˆ[.]:ã‚³ãƒ”ãƒ¼ã—ãªã„',0
 msg_destname_1:			dc.b	'; [CR]:',0
-msg_destname_2:			dc.b	'j: ',0
-msg_dont_make_symbolic_link:	dc.b	'‘Š‘ÎƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN‚Íe.f‚É‚Ì‚Ýì¬‰Â”\‚Å‚·',0
-msg_cannot_access_link:		dc.b	'lndrv‚ª‘g‚Ýž‚Ü‚ê‚Ä‚¢‚È‚¢‚½‚ßƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN‚ÌŽQÆƒtƒ@ƒCƒ‹‚ÉƒAƒNƒZƒX‚Å‚«‚Ü‚¹‚ñ',0
-msg_device:			dc.b	'ƒfƒoƒCƒX ',0
-msg_volumelabel:		dc.b	'ƒ{ƒŠƒ…[ƒ€Eƒ‰ƒxƒ‹ ',0
-msg_directory:			dc.b	'ƒfƒBƒŒƒNƒgƒŠ ',0
-msg_system_file:		dc.b	'ƒVƒXƒeƒ€E'
-msg_file:			dc.b	'ƒtƒ@ƒCƒ‹ ',0
-msg_confirm_overwrite:		dc.b	' ‚Éã‘‚«‚µ‚Ü‚·‚©H ',0
-msg_wo:				dc.b	' ‚ð ',0
-msg_confirm_copy:		dc.b	' ‚ÉƒRƒs[‚µ‚Ü‚·‚©H ',0
-msg_cannot_overwrite_dir:	dc.b	'ƒfƒBƒŒƒNƒgƒŠ‚É‚Í‘‚«ž‚ß‚Ü‚¹‚ñ',0
-msg_cannot_overwrite_symlink:	dc.b	'ƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN‚É‚Í‘‚«ž‚ß‚Ü‚¹‚ñ',0
-msg_cannot_create_link:		dc.b	'ƒVƒ“ƒ{ƒŠƒbƒNEƒŠƒ“ƒN‚ðì¬‚Å‚«‚Ü‚¹‚ñ; ƒtƒ@ƒCƒ‹‚ª‘¶Ý‚µ‚Ä‚¢‚Ü‚·',0
-msg_volume_label_exists:	dc.b	'ƒ{ƒŠƒ…[ƒ€Eƒ‰ƒxƒ‹‚ðƒRƒs[‚µ‚Ü‚¹‚ñ; ƒ{ƒŠƒ…[ƒ€Eƒ‰ƒxƒ‹‚ª‘¶Ý‚µ‚Ä‚¢‚Ü‚·',0
-msg_not_straight:		dc.b	' ‚ÌFAT‚ª•s˜A‘±‚Å‚·. ‚â‚è‚È‚¨‚µ‚Ü‚·‚©H ',0
-msg_sys_not_in_fat:		dc.b	'ƒVƒXƒeƒ€Eƒtƒ@ƒCƒ‹‚ÌƒRƒs[æ‚ªFATŠÇ—‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ',0
-msg_sys_not_in_legal_dir:	dc.b	'ƒVƒXƒeƒ€Eƒtƒ@ƒCƒ‹‚ÌƒRƒs[æ‚ªƒ‹[ƒgEƒfƒBƒŒƒNƒgƒŠæ“ª32ƒGƒ“ƒgƒŠŠO‚Å‚·',0
+msg_destname_2:			dc.b	'ï¼‰: ',0
+msg_dont_make_symbolic_link:	dc.b	'ç›¸å¯¾ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯ã¯â€˜.â€™ã«ã®ã¿ä½œæˆå¯èƒ½ã§ã™',0
+msg_cannot_access_link:		dc.b	'lndrvãŒçµ„ã¿è¾¼ã¾ã‚Œã¦ã„ãªã„ãŸã‚ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯ã®å‚ç…§ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã›ã‚“',0
+msg_device:			dc.b	'ãƒ‡ãƒã‚¤ã‚¹ ',0
+msg_volumelabel:		dc.b	'ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™ãƒ« ',0
+msg_directory:			dc.b	'ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª ',0
+msg_system_file:		dc.b	'ã‚·ã‚¹ãƒ†ãƒ ãƒ»'
+msg_file:			dc.b	'ãƒ•ã‚¡ã‚¤ãƒ« ',0
+msg_confirm_overwrite:		dc.b	' ã«ä¸Šæ›¸ãã—ã¾ã™ã‹ï¼Ÿ ',0
+msg_wo:				dc.b	' ã‚’ ',0
+msg_confirm_copy:		dc.b	' ã«ã‚³ãƒ”ãƒ¼ã—ã¾ã™ã‹ï¼Ÿ ',0
+msg_cannot_overwrite_dir:	dc.b	'ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ã¯æ›¸ãè¾¼ã‚ã¾ã›ã‚“',0
+msg_cannot_overwrite_symlink:	dc.b	'ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯ã«ã¯æ›¸ãè¾¼ã‚ã¾ã›ã‚“',0
+msg_cannot_create_link:		dc.b	'ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒ»ãƒªãƒ³ã‚¯ã‚’ä½œæˆã§ãã¾ã›ã‚“; ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¦ã„ã¾ã™',0
+msg_volume_label_exists:	dc.b	'ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™ãƒ«ã‚’ã‚³ãƒ”ãƒ¼ã—ã¾ã›ã‚“; ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ»ãƒ©ãƒ™ãƒ«ãŒå­˜åœ¨ã—ã¦ã„ã¾ã™',0
+msg_not_straight:		dc.b	' ã®FATãŒä¸é€£ç¶šã§ã™. ã‚„ã‚ŠãªãŠã—ã¾ã™ã‹ï¼Ÿ ',0
+msg_sys_not_in_fat:		dc.b	'ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ”ãƒ¼å…ˆãŒFATç®¡ç†ã•ã‚Œã¦ã„ã¾ã›ã‚“',0
+msg_sys_not_in_legal_dir:	dc.b	'ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ”ãƒ¼å…ˆãŒãƒ«ãƒ¼ãƒˆãƒ»ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå…ˆé ­32ã‚¨ãƒ³ãƒˆãƒªå¤–ã§ã™',0
 msg_usage:			dc.b	CR,LF,CR,LF
-	dc.b	'Žg—p–@:  cp [-ISTVadfhinpsuv] [-m <‘®«•ÏXŽ®>] [--] f1 f2',CR,LF
-	dc.b	'              f1: ƒRƒs[‚·‚éƒtƒ@ƒCƒ‹‚Ü‚½‚Í“ü—ÍƒfƒoƒCƒX',CR,LF
-	dc.b	'              f2: •¡»ƒtƒ@ƒCƒ‹–¼‚Ü‚½‚Ío—ÍƒfƒoƒCƒX',CR,LF,CR,LF
+	dc.b	'ä½¿ç”¨æ³•:  cp [-ISTVadfhinpsuv] [-m <å±žæ€§å¤‰æ›´å¼>] [--] f1 f2',CR,LF
+	dc.b	'              f1: ã‚³ãƒ”ãƒ¼ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã¾ãŸã¯å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹',CR,LF
+	dc.b	'              f2: è¤‡è£½ãƒ•ã‚¡ã‚¤ãƒ«åã¾ãŸã¯å‡ºåŠ›ãƒ‡ãƒã‚¤ã‚¹',CR,LF,CR,LF
 
-	dc.b	'         cp {-R|-r} [-BCDILUSTVadefinpsuvx] [-m <‘®«•ÏXŽ®>] [--] d1 d2',CR,LF
-	dc.b	'              d1: ƒRƒs[‚·‚éƒfƒBƒŒƒNƒgƒŠ',CR,LF
-	dc.b	'              d2: •¡»ƒfƒBƒŒƒNƒgƒŠ–¼iV‹Kj',CR,LF,CR,LF
+	dc.b	'         cp {-R|-r} [-BCDILUSTVadefinpsuvx] [-m <å±žæ€§å¤‰æ›´å¼>] [--] d1 d2',CR,LF
+	dc.b	'              d1: ã‚³ãƒ”ãƒ¼ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª',CR,LF
+	dc.b	'              d2: è¤‡è£½ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåï¼ˆæ–°è¦ï¼‰',CR,LF,CR,LF
 
-	dc.b	'         cp [-BCDILPRSTUVadefhinprsuvx] [-m <‘®«•ÏXŽ®>] [--] any ... targetdir',CR,LF
-	dc.b	'              any: ƒRƒs[‚·‚éƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ',CR,LF
-	dc.b	'              targetdir: ƒRƒs[æƒfƒBƒŒƒNƒgƒŠ',CR,LF,CR,LF
+	dc.b	'         cp [-BCDILPRSTUVadefhinprsuvx] [-m <å±žæ€§å¤‰æ›´å¼>] [--] any ... targetdir',CR,LF
+	dc.b	'              any: ã‚³ãƒ”ãƒ¼ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚„ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª',CR,LF
+	dc.b	'              targetdir: ã‚³ãƒ”ãƒ¼å…ˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª',CR,LF,CR,LF
 
-	dc.b	'         ‘®«•ÏXŽ®: {[ugoa]{{+-=}[ashrwx]}...}[,...] ‚Ü‚½‚Í 8i”’l•\Œ»'
+	dc.b	'         å±žæ€§å¤‰æ›´å¼: {[ugoa]{{+-=}[ashrwx]}...}[,...] ã¾ãŸã¯ 8é€²æ•°å€¤è¡¨ç¾'
 msg_newline:		dc.b	CR,LF,0
 msg_arrow:		dc.b	' -> ',0
 msg_mkdir:		dc.b	'mkdir ',0
@@ -2947,11 +2947,11 @@ drive:			ds.l	1
 copy_into_dir_sourceP:	ds.l	1
 copy_into_dir_destP:	ds.l	1
 .even
-source_fatchkbuf:	ds.b	14+8			* +8 : fatchkƒoƒO‘Îô
+source_fatchkbuf:	ds.b	14+8			* +8 : fatchkãƒã‚°å¯¾ç­–
 .even
-dest_fatchkbuf:		ds.b	14+8			* +8 : fatchkƒoƒO‘Îô
+dest_fatchkbuf:		ds.b	14+8			* +8 : fatchkãƒã‚°å¯¾ç­–
 .even
-tmp_fatchkbuf:		ds.b	14+8			* +8 : fatchkƒoƒO‘Îô
+tmp_fatchkbuf:		ds.b	14+8			* +8 : fatchkãƒã‚°å¯¾ç­–
 .even
 filesbuf:		ds.b	STATBUFSIZE
 .even
@@ -2967,10 +2967,10 @@ mode_mask:		ds.b	1
 mode_plus:		ds.b	1
 .even
 	ds.b	16384+(copy_into_dir_autosize+4*12+copy_directory_autosize+4*4)*(MAXRECURSE+1)
-	*  •K—v‚ÈƒXƒ^ƒbƒN—Ê‚ÍCÄ‹A‚Ì“x‚ÉÁ”ï‚³‚ê‚éƒXƒ^ƒbƒN—Ê‚Æ‚»‚Ì‰ñ”‚Æ‚ÅŒˆ‚Ü‚éD
-	*  4*12 ... copy_into_dir ‚Å‚ÌƒZ[ƒuƒŒƒWƒXƒ^ D0-D3/D5/D7/A0-A3/A6/PC
-	*  4*4 ... copy_directory ‚Å‚ÌƒZ[ƒuƒŒƒWƒXƒ^ D4/A4/A6/PC
-	*  ‚±‚Ì‘¼‚Éƒ}[ƒWƒ“‚ÆƒX[ƒp[ƒoƒCƒUEƒXƒ^ƒbƒN‚Æ‚ðŒ“‚Ë‚Ä16KBŠm•Û‚µ‚Ä‚¨‚­D
+	*  å¿…è¦ãªã‚¹ã‚¿ãƒƒã‚¯é‡ã¯ï¼Œå†å¸°ã®åº¦ã«æ¶ˆè²»ã•ã‚Œã‚‹ã‚¹ã‚¿ãƒƒã‚¯é‡ã¨ãã®å›žæ•°ã¨ã§æ±ºã¾ã‚‹ï¼Ž
+	*  4*12 ... copy_into_dir ã§ã®ã‚»ãƒ¼ãƒ–ãƒ¬ã‚¸ã‚¹ã‚¿ D0-D3/D5/D7/A0-A3/A6/PC
+	*  4*4 ... copy_directory ã§ã®ã‚»ãƒ¼ãƒ–ãƒ¬ã‚¸ã‚¹ã‚¿ D4/A4/A6/PC
+	*  ã“ã®ä»–ã«ãƒžãƒ¼ã‚¸ãƒ³ã¨ã‚¹ãƒ¼ãƒ‘ãƒ¼ãƒã‚¤ã‚¶ãƒ»ã‚¹ã‚¿ãƒƒã‚¯ã¨ã‚’å…¼ã­ã¦16KBç¢ºä¿ã—ã¦ãŠãï¼Ž
 .even
 stack_bottom:
 *****************************************************************
